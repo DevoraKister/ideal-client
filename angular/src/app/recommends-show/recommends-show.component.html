@@ -1,0 +1,13 @@
+
+<div *ngIf="numRec==0">עדין לא התפרסמו המלצות.</div>
+<div *ngFor="let r of recommendList">
+
+   
+  {{r.RecomendInfo}}
+  
+</div>
+
+<p>רוצה להוסיף המלצות משלך?<br>
+  כאן המקום לבטא את חוות דעתך החיובית על המשרה :)
+</p>
+<app-recomend></app-recomend>

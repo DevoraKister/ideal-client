@@ -1,0 +1,103 @@
+<!-- <body (scroll)="scrollFunction()">
+<div>
+</div>
+<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+         <p *ngIf="hi">Hi</p>
+  <p *ngIf="userService.user">{{userService.user?.UserName}}</p> 
+  <p *ngIf="userService.boss">{{userService.boss?.BossName}}</p>
+<a [routerLink]="['/show-jobs',list | json]">giugoggiu</a>
+<a href="http://localhost:4200/show-jobs?list=[1,2,3,]">kokoh</a>
+
+
+  <a  [routerLink]="['/login/login-user']" >בניסת משתמש</a>
+  <a [routerLink]="['/login/login-boss']" >כניסת מפרסם</a>
+<a [routerLink]="['/home/job-table']">בית!!!!!!!!!!!!!!!!!!!!!</a>
+<a [routerLink]="['/about']">אודות</a>
+<a [routerLink]="['/rabanim']"> רבנים</a>
+<a [routerLink]="['/forum']"> פורום</a>
+this.router.navigate(['sign-to-job',idJob]); 
+<a [routerLink]="['/show-jobs',1]">giugoggiu</a>
+<a [routerLink]="['/recomend']">המלצות למשרה</a>
+<a [routerLink]="['/connect']">צור קשר</a>
+<input type="button" (click)="isBoss()" value="שיתוף משרה"> 
+<a [routerLink]="['/smart-agent']">סוכן חכם</a>
+
+        </div>
+        <div><p>{{name}}</p></div>
+</nav> -->
+<!-- glyphicon glyphicon-edit לאייקון -->
+<span class="pull-right glyphicon glyphicon-edit"></span>
+<header id="header">
+  
+
+  <div class="header-nav">
+    <nav id="home-nav" class="navbar navbar-expand-md nav-pills navbar-inverse navbar-light bg-white fixed-top shadow-lg">
+      <!-- שינוי -->
+        <p *ngIf="hi">Hi</p>
+    <p *ngIf="userService.user">{{userService.user?.UserName}}</p> 
+    <p *ngIf="userService.boss">{{userService.boss?.BossName}}</p>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbar_header"
+        aria-controls="navbar_header" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar_header">
+      <!-- <button type="button" class="btn btn-default navbar-btn  btn-inverse  navbar-left  btn-xs "  >Register</button> -->
+      <!-- <button type="button" class="btn btn-default navbar-btn  navbar-left btn-xs btn-primary"  >Sign in</button> -->
+        <ul class="navbar-nav ml-auto">
+            <li  id="loginBoss">
+
+            <a class="ghost-button btn btn-default navbar-btn  btn-inverse  navbar-left  btn-xs"  [routerLink]="['/login/login-boss']" >כניסת מפרסם</a>
+          </li>
+          <li id="loginUser">
+              <a class="ghost-button btn btn-default navbar-btn  navbar-left btn-xs btn-primary" [routerLink]="['/login/login-user']">כניסת משתמש</a>
+
+          </li>
+
+
+          <li class="nav-item">
+            <!-- <input  type="button" (click)="isBoss()" value="שיתוף משרה" id="buttonAddJob">  -->
+            <a id="addJobLink" class="nav-link"  (click)="isBoss()">שיתוף משרה</a>
+
+          </li>
+          <!-- <label for={{j.JobId}}> קרא עוד </label>
+          <input type="checkbox" class="checkboxHidden" id={{j.JobId}}> -->
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/about']">אודות</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/add-company']">הוספת חברה </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/rabanim']"> רבנים</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/recomend']">המלצות למשרה</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/forum']"> פורום</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/connect']">צור קשר</a>
+          </li>
+          <li class="nav-item">
+          <!-- <a href="http://localhost:4200/show-jobs/123A456A789A">show jobs</a> -->
+
+            <a class="nav-link" [routerLink]="['/smart-agent']">סוכן חכם</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" [routerLink]="['/home/job-table']">בית <span class="sr-only">(current)</span></a>
+          </li>
+      <a class="navbar-brand" href="#"><h1>אידאיללללל</h1></a>
+    
+
+        </ul>
+      </div>
+    </nav>
+    <a [routerLink]="['/show-jobs',list | json]">giugoggiu</a>
+    <a href="http://localhost:4200/show-jobs?list=[1,2,3,]">kokoh</a>
+  </div>
+</header>
+
+

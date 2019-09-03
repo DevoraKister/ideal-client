@@ -1,0 +1,36 @@
+
+<section class=" pagination-centered">
+    <div class="container justify-content-center">
+      <div class="row">
+        <div>
+          <div *ngFor="let c of Companies" class="center-block">
+                <hr>
+                <div class="fa-ul">
+                  <p><b>:שם החברה</b>{{c.CompanyName}}</p>
+                  <p><b>:אזור </b></p>
+                  <select disabled>
+                      <option *ngFor="let j of jobParameters.Areas" [selected]="j.AreaId ==c.CompanyAreaId?true:false">{{j.AreaName}} </option>
+                    </select>
+                  <p><b>:עיר </b></p>
+                  <select disabled>
+                      <option *ngFor="let j of jobParameters.Cities" [selected]="j.CityId ==c.CompanyCityId?true:false">{{j.CityName}}</option>
+                    </select>
+                  <p *ngIf="c.CompanyStreet"> <b>רחוב: </b>{{c.CompanyStreet}} {{c.CompanyNumBuild}}</p>
+                  <p *ngIf="c.CompanyTel"><b>:טלפון </b></p>
+                  <p>{{c.CompanyTel}}</p>
+                  <p *ngIf="c.CompanyMail"><b>:מייל </b></p>
+                  <p>{{c.CompanyMail}}</p>
+                  </div>
+                  <input type="button" (click)="removeCompany(c.CompanyId)" class="btn btn-block btn-primary text-uppercase" value="למחיקה">
+                  <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status Reports</li>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+          
+  
+    
+
+  
+  </section>

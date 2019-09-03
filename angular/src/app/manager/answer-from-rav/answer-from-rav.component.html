@@ -1,0 +1,14 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <input [(ngModel)]= "currentQuestion.Question1" placeholder="השאלה" formControlName="question">
+  <div *ngIf="submitted && f.question.errors" class="invalid-feedback">
+    <div *ngIf="f.name.question.required">יש להכניס שאלה</div>
+  </div>
+  <input [(ngModel)]= "currentQuestion.Answer" placeholder="התשובה" formControlName="answer">
+  <div *ngIf="submitted && f.answer.errors" class="invalid-feedback">
+    <div *ngIf="f.name.answer.required">יש להכניס תשובה</div>
+  </div>
+  <select formControlName="topic">
+    <option *ngFor="let t of topics"  value="{{t.TopicId}}">{{t.TopicName}}</option>
+  </select>
+  <input type="submit" value="הוסף שאלה">
+  </form>

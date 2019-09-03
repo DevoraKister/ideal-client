@@ -1,0 +1,77 @@
+<section class="justify-content-center pagination-centered">
+  <select #part1>
+    <option *ngFor="let part of jobParameters.Parts" value="{{part.PartId}}"> {{part.PartName}}</option>
+  </select>
+  <select #sub1>
+    <option *ngFor="let sub of jobParameters.SubjectJob" value="{{sub.SubId}}">{{sub.SubName}}</option>
+  </select>
+  <select #area1 (change)="getCity($event)">
+    <option *ngFor="let sub of jobParameters.Areas" value="{{sub.AreaId}}">{{sub.AreaName}}</option>
+  </select>
+
+  <select *ngIf="cities" (change)="city($event.target.value)">
+    <option *ngFor="let c of cities" value="{{c.CityId}}">{{c.CityName}}</option>
+  </select>
+
+  <select *ngIf="!cities" (change)="city($event.target.value)">
+    <option *ngFor="let c of jobParameters.Cities" value="{{c.CityId}}">{{c.CityName}}</option>
+  </select>
+  <input type="button" (click)="getJobs(area1,part1,sub1)" value="חפש">
+
+    
+</section>
+
+
+<section class=" pagination-centered">
+  <div class="container justify-content-center">
+    <div class="row">
+      <!-- Free Tier -->
+      <div>
+        <!-- <div class="col-lg-6"> -->
+        <div *ngFor="let j of jobs" class="center-block">
+
+          <div class="card mb-5 mb-lg-0">
+
+            <div class="card-body">
+              <h5 class="card-title text-muted text-uppercase text-center">{{j.JobRole}}</h5>
+              <h6 class="card-price text-center" (click)="getRecommend(j.JobId)" id="company"><span class="period" >{{j.CompanyName}}</span></h6>
+              <hr>
+              <div class="fa-ul">
+                <p><b>:תאור תפקיד</b></p>
+                <p>{{j.JobDescribe}}</p>
+                <label for={{j.JobId}}> קרא עוד </label>
+                <input type="checkbox" class="checkboxHidden" id={{j.JobId}}>
+                <div class="facebook">
+                  <p><b>דרישות</b></p>
+                  <p>{{j.JobRequire}}</p>
+                  <p><b>מס' שנות ניסיון: </b>{{j.JobExperience}}</p>
+                  <p><b>סביבת עבודה: </b>{{j.WSName}}</p>
+                  <p><b>חסימת אינטרנט: </b>{{j.OutNetName}}</p>
+                  <p><b>סוג משרה: </b>{{j.PartName}}</p>
+                </div>
+              <input type="button" (click)="getRecommend(j.JobId)"  class="btn btn-block btn-primary text-uppercase" value="להמלצות למשרה">
+                
+                <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status Reports</li>
+              </div>
+              <input type="button" (click)="registerToJob(j.JobId)" class="btn  btn-primary text-uppercase" value="הרשם">
+              <!-- לבדוק -->
+              <input type="button" (click)="UpdateDetails(j.JobId)" class="btn btn-block btn-primary text-uppercase" value="עדכון פרטים לפני הרשמה">
+              <!-- <a href="#" class="btn btn-block btn-primary text-uppercase">הרשם</a> -->
+              <!-- <button type="button" class="btn btn-default" ng-click="$ctrl.open('lg')">Large modal</button> -->
+
+            </div>
+          </div>
+        </div>
+        <!-- Plus Tier -->
+
+        <!-- Pro Tier -->
+
+      </div>
+    </div>
+  </div>
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = getServerData($event)"
+    [hidePageSize]="true">
+  </mat-paginator>
+
+
+</section>

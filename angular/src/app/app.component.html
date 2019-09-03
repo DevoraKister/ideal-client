@@ -1,0 +1,37 @@
+
+<app-header *ngIf="!manager" class="header"></app-header>
+
+<app-header-manager *ngIf="manager" class="header"></app-header-manager>
+<!-- <app-home></app-home> -->
+
+<!--  -->
+  
+  <!-- <div class="main-content">
+    <section id="home">
+      <div class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../assets/דגם 2 קורות חיים.pdf" width="100%">
+          </div>
+          <div class="carousel-item">
+            <img src="../assets/דגם 2 קורות חיים.pdf" width="100%">
+          </div>
+          <div class="carousel-item">
+            <img src="../../../assets/landing-page/images/slider-1.jpg" width="100%">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="our_mission">
+      <p>AAAAAAAAAA</p>
+    </section>
+    <section id="our_clients"></section>
+    <section id="features"></section>
+    <section id="pricing"></section>
+    <section id="faqs"></section>
+  </div> -->
+<router-outlet>
+    <div id="divNav" style="width: 100vw;height:15vh;background-color:brown;box-shadow: #333;"></div>
+</router-outlet>
+
+<app-footer></app-footer>

@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row ">
+    <!-- <div class="col-sm-0	col-md-1	col-lg-1	col-xl-1"></div> -->
+    <div class="col-sm-12	col-md-6	col-lg-6	col-xl-6 ">
+      <p>מקצוע</p>
+      <select #subjectjob>
+        <option *ngFor="let c of jobparam.SubjectJob" class="col-10">{{c.SubName}}</option>
+      </select>
+      <p> כותרת התפקיד</p>
+      <input type="text" [(ngModel)]="currentJob.JobRole" class="col-10" />
+      <p> תאור המשרה </p>
+      <textarea id="JobDescribe" class="slide-down col-10" [(ngModel)]="currentJob.JobDescribe"
+        placeholder="פרטי משרה. ככל שתפרטי יותר יבינו אותך יותר."></textarea>
+      <div>
+        <p>כמות שנים נדרשות: </p>
+        <input type="number" [(ngModel)]="currentJob.JobExperience" class="col-10" />
+        <p>הדרישות </p>
+        <textarea id="JobRequire" class="slide-down col-10" [(ngModel)]="currentJob.JobRequire"
+          placeholder="פרטי משרה. ככל שתפרטי יותר יבינו אותך יותר."></textarea>
+      </div>
+    </div>
+    <!-- </div> -->
+    <div class="col-sm-12	col-md-6	col-lg-6	col-xl-6 .offset-md-1">
+      <p>סביבית העבודה </p>
+      <select #workspace>
+        <option *ngFor="let c of jobparam.Workspaces" class="col-10">{{c.WSName}}</option>
+      </select>
+      <p> סוג החסימה</p>
+      <select #outnet>
+        <option *ngFor="let c of jobparam.OutNets" class="col-10">{{c.OutNetName}}</option>
+      </select>
+      <p>זמן ביממה שאת מעונית לעבוד</p>
+      <select #parts>
+        <option *ngFor="let c of jobparam.Parts" class="col-10">{{c.PartName}}</option>
+      </select>
+      <p>הרשם</p>
+      <input type="button" (click)="addParts(workspace,outnet,parts,subjectjob)">
+      <div>המשרה בחברת:</div>
+    </div>
+    <div class="col-sm-0	col-md-1	col-lg-1	col-xl-1 "></div>
+    <!-- </div> -->
+  </div>

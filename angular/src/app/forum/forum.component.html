@@ -1,0 +1,12 @@
+<!-- <form (submit)="askQuation()">
+<p>quetion</p>
+<input type="text" [(ngModel)]="currentQuestion.Question1">
+<p>answer</p>
+<input type="text" [(ngModel)]="currentQuestion.Answer" >
+<input type="submit" value="שאל בני">
+</form> -->
+
+<div *ngFor="let q of questionsList">
+    <p >{{q.Question1}}</p>
+    <p>{{q.Answer}}</p>
+</div>

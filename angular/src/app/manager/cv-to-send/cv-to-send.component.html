@@ -1,0 +1,7 @@
+<p>
+  cv-to-send works!
+</p>
+  <div *ngFor="let user of signedUser">
+    {{user.UserName}}<br>
+    <input type="button" value="sendCv" (click)="sendCv()" name="cv">
+  </div>

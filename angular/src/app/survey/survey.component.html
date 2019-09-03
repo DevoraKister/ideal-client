@@ -1,0 +1,27 @@
+<!-- <form> -->
+  <h2>תוכלי לענות לנו על שאלון קצר?</h2>
+<input type="text" placeholder="הסמינר בו למדת, במתותא" [(ngModel)]="s.SurveySeminar">
+<br>
+<p>המקצוע שלמדת בסמינר</p>
+<select [(ngModel)]="s.SurveySubLearnId">
+  <option *ngFor="let sub of sub" value="{{sub.SubId}}">{{sub.SubName}}</option>
+</select>
+<input type="text" [(ngModel)]="s.SurveySubLearnedTxt" placeholder="אחר">
+
+<p>האם את עובדת בתחום שונה ממה שלמדת?</p>
+
+<input type="checkbox" [(ngModel)]="s.SurveyIsWork">
+<div *ngIf="s.SurveyIsWork">
+<p>במה?</p>
+
+<select  [(ngModel)]="s.SurveySubTodayId">
+  <option *ngFor="let sub of sub" value="{{sub.SubId}}">{{sub.SubName}}</option>
+</select>
+<input type="text" [(ngModel)]="s.SurveySubTodayTxt" placeholder="אחר">
+<textarea></textarea>
+</div>
+
+
+<input type="submit" value="שלח" (click)="sendSurvey()">
+
+<!-- <div _ngcontent-rvq-c17="" class="docs-primary-header component-page-header"><button _ngcontent-rvq-c17="" class="sidenav-toggle mat-button" mat-button=""><span class="mat-button-wrapper"><mat-icon _ngcontent-rvq-c17="" class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">menu</mat-icon></span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></button><h1 _ngcontent-rvq-c17="" focusonnavigation="" tabindex="-1">CDK </h1></div> -->

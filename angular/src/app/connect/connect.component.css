@@ -1,0 +1,11 @@
+#body{
+    text-align: center;
+    direction: rtl;
+    /* color: aqua; */
+    background-color: #e9ecef;
+    box-shadow: black;
+}
+.jumbotron{
+    background-color: white;
+
+}

@@ -1,0 +1,27 @@
+
+
+<p>אלו פרטי הזהות השמורים במערכת:</p>
+<p>שם:</p>
+<input type="text" [(ngModel)]="currentUser.UserName">
+<p>טלפון:</p>
+<input type="text" [(ngModel)]="currentUser.UserTel">
+<p>כתובת מייל:</p>
+<input type="text" [(ngModel)]="currentUser.UserMail">
+
+<!-- <pdf-viewer [src]="'../../assets/דגם 2 קורות חיים.pdf'"  -->
+<pdf-viewer [src]="cv" 
+[render-text]="true"
+style="display: block;"
+[original-size]="true"
+></pdf-viewer>
+<!-- <ngx-doc-viewer [url]="../../assets/tre.docx" viewer="office" style="width:100%;height:50vh;"></ngx-doc-viewer> -->
+<input type="button" value="הרשמי עכשיו" (click)="updateDetails()"/>
+<input type="button" value="להעלות קו''ח חדש" (click)="SignToJob()"/>
+
+<a target="_blank" [href]="cv" >לצפיה בקו"ח</a>
+
+<p>לעדכון קורות חיים</p>
+<div class="form-group">
+  <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+</div>
+

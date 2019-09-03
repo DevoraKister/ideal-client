@@ -1,0 +1,20 @@
+<div>
+</div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+      <!-- statistic -->
+    <a [routerLink]="['/about']">אודות</a>
+    <a [routerLink]="['/answer-from-rav']">הוספת שאלה הלכתית</a>
+    <a [routerLink]="['/statistic']">לסטטיסטיקות לגבי האתר</a>
+    <a [routerLink]="['/sign-to-job-manager']">נרשם למשרה</a>
+    <a [routerLink]="['/check']">עריכת משרות</a>
+    <a [routerLink]="['/watching-companies']">ניהול חברות</a>
+    <input type="button" (click)="isBoss()" value="שיתוף משרה">
+
+    <!-- <a [routerLink]="['/add-company']">הוספת חברה </a> -->
+  </div>
+  <div>
+    <p>{{name}}</p>
+  </div>
+</nav>

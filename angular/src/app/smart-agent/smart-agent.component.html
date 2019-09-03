@@ -1,0 +1,56 @@
+<div class="row justify-content-center" >
+<div class=" col-8" id="body">
+<div class="row justify-content-center">
+
+  <div class="col-md-6 col-lg-6 col-xl-6 col-sm-8">
+    <h1> ברוכה הבאה לשרות הסוכן החכם</h1>
+    <div *ngIf="!currentUser">
+      <p>על מנת להרשם לסוכן החם , עליך ליהיות מחוברת לאתר</p>
+      <a [routerLink]="['/login/login-user']">התחבר עכשיו</a>
+      <a [routerLink]="['/login/register-user']">הרשם עכשיו</a>
+
+    </div>
+    <div *ngIf="currentUser&&details">
+      <p>להלן פרטיך הנמצאים במאגר</p>
+      <p> המערכת תתן לך את השרות הטוב ביותר, לפי הפרטים הנ"ל </p><br>
+<br>
+<br>
+      <p> אם יש צורך, באפשרותך לעדכנם בשדות הבאים</p>
+
+      <br>
+      <p>שם:</p>
+      <input type="text" [(ngModel)]="currentUser.UserName" class="col" />
+      <p>טלפון:</p>
+      <input type="text" [(ngModel)]="currentUser.UserTel" class="col" />
+      <p>כתובת מייל:</p>
+      <input type="text" [(ngModel)]="currentUser.UserMail" class="col" />
+      <div *ngIf="jobParameters"></div>
+      <p>תחומי משרה:</p>
+      <select [(ngModel)]="currentUser.UserSubId" class="col" >
+        <option *ngFor="let sub of jobParameters.SubjectJob" [selected]="sub.SubId == currentUser.UserSubId?true:false">
+          {{sub.SubName}}</option>
+      </select>
+
+      <p>עיר</p>
+      <select [(ngModel)]="currentUser.UserCityId" class="col" >
+        <option *ngFor="let c of jobParameters.Cities" [selected]="c.CityId == currentUser.UserCityId?true:false">
+          {{c.CityName}}</option>
+      </select>
+      <p>חלקי משרה</p>
+      <select [(ngModel)]="currentUser.UserPartId" class="col" >
+        <option *ngFor="let p of jobParameters.Parts" [selected]="p.PartId == currentUser.UserPartId?true:false">
+          {{p.PartName}}</option>
+      </select>
+
+
+
+      <p style='background-color:cadetblue'>באיזה תדירות תרצי לקבל עדכונים?</p>
+      <select [(ngModel)]="currentUser.UserSmartAgentTime">
+        <option *ngFor="let t of time" value="{{t.id}}">{{t.name}}</option>
+      </select>
+
+      <input type="button" value="הרשמי עכשיו" (click)="updateDetails()" class="col" />
+    </div>
+  </div></div>
+</div>
+</div>

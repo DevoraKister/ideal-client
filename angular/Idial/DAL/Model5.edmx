@@ -1,0 +1,1462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IdialModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="AreaId" />
+          </Key>
+          <Property Name="AreaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Boss">
+          <Key>
+            <PropertyRef Name="BossId" />
+          </Key>
+          <Property Name="BossId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BossName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BossTel" Type="nvarchar" MaxLength="50" />
+          <Property Name="BossCityId" Type="int" />
+          <Property Name="BossMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="BossStreet" Type="nvarchar" MaxLength="50" />
+          <Property Name="BossStars" Type="int" />
+          <Property Name="BossSubId" Type="int" />
+          <Property Name="BossPassword" Type="nvarchar" MaxLength="10" />
+          <Property Name="BossIsConnection" Type="bit" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityAreaId" Type="int" />
+        </EntityType>
+        <EntityType Name="Cv">
+          <Key>
+            <PropertyRef Name="CvId" />
+          </Key>
+          <Property Name="CvId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CvLink" Type="nvarchar" MaxLength="50" />
+          <Property Name="CvUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobId" />
+          </Key>
+          <Property Name="JobId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobDateAdv" Type="date" />
+          <Property Name="JobAreaId" Type="int" />
+          <Property Name="JobCityId" Type="int" />
+          <Property Name="JobSubId" Type="int" />
+          <Property Name="JobRole" Type="nvarchar(max)" />
+          <Property Name="JobPartId" Type="int" />
+          <Property Name="JobPartOutNetId" Type="int" />
+          <Property Name="JobWorkspaceId" Type="int" />
+          <Property Name="JobExperience" Type="int" />
+          <Property Name="JobCVId" Type="int" />
+          <Property Name="JobOfferId" Type="int" />
+          <Property Name="JobStars" Type="int" />
+          <Property Name="JobBossId" Type="int" />
+          <Property Name="JobStatus" Type="bit" />
+          <Property Name="JobDateCaughtJob" Type="date" />
+          <Property Name="JobIsByUs" Type="bit" />
+        </EntityType>
+        <EntityType Name="OutNet">
+          <Key>
+            <PropertyRef Name="OutNetId" />
+          </Key>
+          <Property Name="OutNetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OutNetName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Part">
+          <Key>
+            <PropertyRef Name="PartId" />
+          </Key>
+          <Property Name="PartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PutInJob">
+          <Key>
+            <PropertyRef Name="PutId" />
+          </Key>
+          <Property Name="PutId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PutJobId" Type="int" />
+          <Property Name="PutUserId" Type="int" />
+          <Property Name="PutDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QueId" />
+          </Key>
+          <Property Name="QueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QueUserId" Type="int" />
+          <Property Name="Question" Type="nvarchar(max)" />
+          <Property Name="Answer" Type="nvarchar(max)" />
+          <Property Name="RavId" Type="int" />
+          <Property Name="QueTopicId" Type="int" />
+        </EntityType>
+        <EntityType Name="Rav">
+          <Key>
+            <PropertyRef Name="RavId" />
+          </Key>
+          <Property Name="RavId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RavName" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Recomend">
+          <Key>
+            <PropertyRef Name="RecomendId" />
+          </Key>
+          <Property Name="RecomendId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecomendUserId" Type="int" />
+          <Property Name="RecomemdBossId" Type="int" />
+          <Property Name="RecomendInfo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="ReqId" />
+          </Key>
+          <Property Name="ReqId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReqUserId" Type="int" />
+          <Property Name="ReqContents" Type="nvarchar(max)" />
+          <Property Name="ReqTypeConectId" Type="int" />
+        </EntityType>
+        <EntityType Name="Sign">
+          <Key>
+            <PropertyRef Name="SignId" />
+          </Key>
+          <Property Name="SignId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SignJobId" Type="int" />
+          <Property Name="SignUserId" Type="int" />
+          <Property Name="SignDate" Type="date" />
+        </EntityType>
+        <EntityType Name="SubjectJob">
+          <Key>
+            <PropertyRef Name="SubId" />
+          </Key>
+          <Property Name="SubId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubName" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TopicQuestion">
+          <Key>
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="TopicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TopicName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TypeConnect">
+          <Key>
+            <PropertyRef Name="TypeConnectId" />
+          </Key>
+          <Property Name="TypeConnectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeConnectName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserTel" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserCityId" Type="int" />
+          <Property Name="UserSubId" Type="int" />
+          <Property Name="UserIsChizuk" Type="bit" />
+          <Property Name="UserIsUpdate" Type="bit" />
+          <Property Name="UserPartId" Type="int" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Workspace">
+          <Key>
+            <PropertyRef Name="WSId" />
+          </Key>
+          <Property Name="WSId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WSName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Boss_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Boss" Type="Self.Boss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Boss">
+              <PropertyRef Name="BossCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boss_SubjectJob">
+          <End Role="SubjectJob" Type="Self.SubjectJob" Multiplicity="0..1" />
+          <End Role="Boss" Type="Self.Boss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectJob">
+              <PropertyRef Name="SubId" />
+            </Principal>
+            <Dependent Role="Boss">
+              <PropertyRef Name="BossSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Boss">
+          <End Role="Boss" Type="Self.Boss" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boss">
+              <PropertyRef Name="BossId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobBossId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Cv">
+          <End Role="Cv" Type="Self.Cv" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cv">
+              <PropertyRef Name="CvId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobCVId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_OutNet">
+          <End Role="OutNet" Type="Self.OutNet" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutNet">
+              <PropertyRef Name="OutNetId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobPartOutNetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Part">
+          <End Role="Part" Type="Self.Part" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobPartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_SubjectJob">
+          <End Role="SubjectJob" Type="Self.SubjectJob" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectJob">
+              <PropertyRef Name="SubId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Workspace">
+          <End Role="Workspace" Type="Self.Workspace" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workspace">
+              <PropertyRef Name="WSId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobWorkspaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PutInJob_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="PutInJob" Type="Self.PutInJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="PutInJob">
+              <PropertyRef Name="PutJobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PutInJob_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="PutInJob" Type="Self.PutInJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PutInJob">
+              <PropertyRef Name="PutUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Rav">
+          <End Role="Rav" Type="Self.Rav" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rav">
+              <PropertyRef Name="RavId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="RavId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_TopicQuestion">
+          <End Role="TopicQuestion" Type="Self.TopicQuestion" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TopicQuestion">
+              <PropertyRef Name="TopicId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QueTopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QueUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recomend_Boss">
+          <End Role="Boss" Type="Self.Boss" Multiplicity="0..1" />
+          <End Role="Recomend" Type="Self.Recomend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boss">
+              <PropertyRef Name="BossId" />
+            </Principal>
+            <Dependent Role="Recomend">
+              <PropertyRef Name="RecomemdBossId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recomend_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Recomend" Type="Self.Recomend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Recomend">
+              <PropertyRef Name="RecomendUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_TypeConnect">
+          <End Role="TypeConnect" Type="Self.TypeConnect" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeConnect">
+              <PropertyRef Name="TypeConnectId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ReqTypeConectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ReqUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sign_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="Sign" Type="Self.Sign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="Sign">
+              <PropertyRef Name="SignJobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sign_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Sign" Type="Self.Sign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Sign">
+              <PropertyRef Name="SignUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Part">
+          <End Role="Part" Type="Self.Part" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserPartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_SubjectJob">
+          <End Role="SubjectJob" Type="Self.SubjectJob" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectJob">
+              <PropertyRef Name="SubId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IdialModel1StoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Boss" EntityType="Self.Boss" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cv" EntityType="Self.Cv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OutNet" EntityType="Self.OutNet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Part" EntityType="Self.Part" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PutInJob" EntityType="Self.PutInJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rav" EntityType="Self.Rav" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recomend" EntityType="Self.Recomend" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sign" EntityType="Self.Sign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectJob" EntityType="Self.SubjectJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TopicQuestion" EntityType="Self.TopicQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeConnect" EntityType="Self.TypeConnect" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workspace" EntityType="Self.Workspace" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Boss_City" Association="Self.FK_Boss_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Boss" EntitySet="Boss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boss_SubjectJob" Association="Self.FK_Boss_SubjectJob">
+            <End Role="SubjectJob" EntitySet="SubjectJob" />
+            <End Role="Boss" EntitySet="Boss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Area" Association="Self.FK_Job_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Boss" Association="Self.FK_Job_Boss">
+            <End Role="Boss" EntitySet="Boss" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_City" Association="Self.FK_Job_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Cv" Association="Self.FK_Job_Cv">
+            <End Role="Cv" EntitySet="Cv" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_OutNet" Association="Self.FK_Job_OutNet">
+            <End Role="OutNet" EntitySet="OutNet" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Part" Association="Self.FK_Job_Part">
+            <End Role="Part" EntitySet="Part" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_SubjectJob" Association="Self.FK_Job_SubjectJob">
+            <End Role="SubjectJob" EntitySet="SubjectJob" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Workspace" Association="Self.FK_Job_Workspace">
+            <End Role="Workspace" EntitySet="Workspace" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PutInJob_Job" Association="Self.FK_PutInJob_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="PutInJob" EntitySet="PutInJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PutInJob_User" Association="Self.FK_PutInJob_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PutInJob" EntitySet="PutInJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Rav" Association="Self.FK_Question_Rav">
+            <End Role="Rav" EntitySet="Rav" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_TopicQuestion" Association="Self.FK_Question_TopicQuestion">
+            <End Role="TopicQuestion" EntitySet="TopicQuestion" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_User" Association="Self.FK_Question_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recomend_Boss" Association="Self.FK_Recomend_Boss">
+            <End Role="Boss" EntitySet="Boss" />
+            <End Role="Recomend" EntitySet="Recomend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recomend_User" Association="Self.FK_Recomend_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Recomend" EntitySet="Recomend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_TypeConnect" Association="Self.FK_Request_TypeConnect">
+            <End Role="TypeConnect" EntitySet="TypeConnect" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_User" Association="Self.FK_Request_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sign_Job" Association="Self.FK_Sign_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="Sign" EntitySet="Sign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sign_User" Association="Self.FK_Sign_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Sign" EntitySet="Sign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_City" Association="Self.FK_User_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Part" Association="Self.FK_User_Part">
+            <End Role="Part" EntitySet="Part" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_SubjectJob" Association="Self.FK_User_SubjectJob">
+            <End Role="SubjectJob" EntitySet="SubjectJob" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IdialModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="AreaId" />
+          </Key>
+          <Property Name="AreaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_Area" FromRole="Area" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Boss">
+          <Key>
+            <PropertyRef Name="BossId" />
+          </Key>
+          <Property Name="BossId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BossName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BossTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BossCityId" Type="Int32" />
+          <Property Name="BossMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BossStreet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BossStars" Type="Int32" />
+          <Property Name="BossSubId" Type="Int32" />
+          <Property Name="BossPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BossIsConnection" Type="Boolean" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Boss_City" FromRole="Boss" ToRole="City" />
+          <NavigationProperty Name="SubjectJob" Relationship="Self.FK_Boss_SubjectJob" FromRole="Boss" ToRole="SubjectJob" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_Boss" FromRole="Boss" ToRole="Job" />
+          <NavigationProperty Name="Recomend" Relationship="Self.FK_Recomend_Boss" FromRole="Boss" ToRole="Recomend" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityAreaId" Type="Int32" />
+          <NavigationProperty Name="Boss" Relationship="Self.FK_Boss_City" FromRole="City" ToRole="Boss" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_City" FromRole="City" ToRole="Job" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_City" FromRole="City" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Cv">
+          <Key>
+            <PropertyRef Name="CvId" />
+          </Key>
+          <Property Name="CvId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CvLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CvUserId" Type="Int32" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_Cv" FromRole="Cv" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobId" />
+          </Key>
+          <Property Name="JobId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobDateAdv" Type="DateTime" Precision="0" />
+          <Property Name="JobAreaId" Type="Int32" />
+          <Property Name="JobCityId" Type="Int32" />
+          <Property Name="JobSubId" Type="Int32" />
+          <Property Name="JobRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobPartId" Type="Int32" />
+          <Property Name="JobPartOutNetId" Type="Int32" />
+          <Property Name="JobWorkspaceId" Type="Int32" />
+          <Property Name="JobExperience" Type="Int32" />
+          <Property Name="JobCVId" Type="Int32" />
+          <Property Name="JobOfferId" Type="Int32" />
+          <Property Name="JobStars" Type="Int32" />
+          <Property Name="JobBossId" Type="Int32" />
+          <Property Name="JobStatus" Type="Boolean" />
+          <Property Name="JobDateCaughtJob" Type="DateTime" Precision="0" />
+          <Property Name="JobIsByUs" Type="Boolean" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Job_Area" FromRole="Job" ToRole="Area" />
+          <NavigationProperty Name="Boss" Relationship="Self.FK_Job_Boss" FromRole="Job" ToRole="Boss" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Job_City" FromRole="Job" ToRole="City" />
+          <NavigationProperty Name="Cv" Relationship="Self.FK_Job_Cv" FromRole="Job" ToRole="Cv" />
+          <NavigationProperty Name="OutNet" Relationship="Self.FK_Job_OutNet" FromRole="Job" ToRole="OutNet" />
+          <NavigationProperty Name="Part" Relationship="Self.FK_Job_Part" FromRole="Job" ToRole="Part" />
+          <NavigationProperty Name="SubjectJob" Relationship="Self.FK_Job_SubjectJob" FromRole="Job" ToRole="SubjectJob" />
+          <NavigationProperty Name="Workspace" Relationship="Self.FK_Job_Workspace" FromRole="Job" ToRole="Workspace" />
+          <NavigationProperty Name="PutInJob" Relationship="Self.FK_PutInJob_Job" FromRole="Job" ToRole="PutInJob" />
+          <NavigationProperty Name="Sign" Relationship="Self.FK_Sign_Job" FromRole="Job" ToRole="Sign" />
+        </EntityType>
+        <EntityType Name="OutNet">
+          <Key>
+            <PropertyRef Name="OutNetId" />
+          </Key>
+          <Property Name="OutNetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OutNetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_OutNet" FromRole="OutNet" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Part">
+          <Key>
+            <PropertyRef Name="PartId" />
+          </Key>
+          <Property Name="PartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_Part" FromRole="Part" ToRole="Job" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Part" FromRole="Part" ToRole="User" />
+        </EntityType>
+        <EntityType Name="PutInJob">
+          <Key>
+            <PropertyRef Name="PutId" />
+          </Key>
+          <Property Name="PutId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PutJobId" Type="Int32" />
+          <Property Name="PutUserId" Type="Int32" />
+          <Property Name="PutDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_PutInJob_Job" FromRole="PutInJob" ToRole="Job" />
+          <NavigationProperty Name="User" Relationship="Self.FK_PutInJob_User" FromRole="PutInJob" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QueId" />
+          </Key>
+          <Property Name="QueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QueUserId" Type="Int32" />
+          <Property Name="Question1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RavId" Type="Int32" />
+          <Property Name="QueTopicId" Type="Int32" />
+          <NavigationProperty Name="Rav" Relationship="Self.FK_Question_Rav" FromRole="Question" ToRole="Rav" />
+          <NavigationProperty Name="TopicQuestion" Relationship="Self.FK_Question_TopicQuestion" FromRole="Question" ToRole="TopicQuestion" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Question_User" FromRole="Question" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Rav">
+          <Key>
+            <PropertyRef Name="RavId" />
+          </Key>
+          <Property Name="RavId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RavName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Question_Rav" FromRole="Rav" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Recomend">
+          <Key>
+            <PropertyRef Name="RecomendId" />
+          </Key>
+          <Property Name="RecomendId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecomendUserId" Type="Int32" />
+          <Property Name="RecomemdBossId" Type="Int32" />
+          <Property Name="RecomendInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Boss" Relationship="Self.FK_Recomend_Boss" FromRole="Recomend" ToRole="Boss" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Recomend_User" FromRole="Recomend" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="ReqId" />
+          </Key>
+          <Property Name="ReqId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReqUserId" Type="Int32" />
+          <Property Name="ReqContents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReqTypeConectId" Type="Int32" />
+          <NavigationProperty Name="TypeConnect" Relationship="Self.FK_Request_TypeConnect" FromRole="Request" ToRole="TypeConnect" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Request_User" FromRole="Request" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Sign">
+          <Key>
+            <PropertyRef Name="SignId" />
+          </Key>
+          <Property Name="SignId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SignJobId" Type="Int32" />
+          <Property Name="SignUserId" Type="Int32" />
+          <Property Name="SignDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Sign_Job" FromRole="Sign" ToRole="Job" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Sign_User" FromRole="Sign" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SubjectJob">
+          <Key>
+            <PropertyRef Name="SubId" />
+          </Key>
+          <Property Name="SubId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Boss" Relationship="Self.FK_Boss_SubjectJob" FromRole="SubjectJob" ToRole="Boss" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_SubjectJob" FromRole="SubjectJob" ToRole="Job" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_SubjectJob" FromRole="SubjectJob" ToRole="User" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TopicQuestion">
+          <Key>
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="TopicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TopicName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Question_TopicQuestion" FromRole="TopicQuestion" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="TypeConnect">
+          <Key>
+            <PropertyRef Name="TypeConnectId" />
+          </Key>
+          <Property Name="TypeConnectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeConnectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_TypeConnect" FromRole="TypeConnect" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserCityId" Type="Int32" />
+          <Property Name="UserSubId" Type="Int32" />
+          <Property Name="UserIsChizuk" Type="Boolean" />
+          <Property Name="UserIsUpdate" Type="Boolean" />
+          <Property Name="UserPartId" Type="Int32" />
+          <Property Name="UserPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="City" Relationship="Self.FK_User_City" FromRole="User" ToRole="City" />
+          <NavigationProperty Name="Part" Relationship="Self.FK_User_Part" FromRole="User" ToRole="Part" />
+          <NavigationProperty Name="PutInJob" Relationship="Self.FK_PutInJob_User" FromRole="User" ToRole="PutInJob" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Question_User" FromRole="User" ToRole="Question" />
+          <NavigationProperty Name="Recomend" Relationship="Self.FK_Recomend_User" FromRole="User" ToRole="Recomend" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_User" FromRole="User" ToRole="Request" />
+          <NavigationProperty Name="Sign" Relationship="Self.FK_Sign_User" FromRole="User" ToRole="Sign" />
+          <NavigationProperty Name="SubjectJob" Relationship="Self.FK_User_SubjectJob" FromRole="User" ToRole="SubjectJob" />
+        </EntityType>
+        <EntityType Name="Workspace">
+          <Key>
+            <PropertyRef Name="WSId" />
+          </Key>
+          <Property Name="WSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job" Relationship="Self.FK_Job_Workspace" FromRole="Workspace" ToRole="Job" />
+        </EntityType>
+        <Association Name="FK_Job_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="AreaId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boss_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Boss" Type="Self.Boss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Boss">
+              <PropertyRef Name="BossCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boss_SubjectJob">
+          <End Role="SubjectJob" Type="Self.SubjectJob" Multiplicity="0..1" />
+          <End Role="Boss" Type="Self.Boss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectJob">
+              <PropertyRef Name="SubId" />
+            </Principal>
+            <Dependent Role="Boss">
+              <PropertyRef Name="BossSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Boss">
+          <End Role="Boss" Type="Self.Boss" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boss">
+              <PropertyRef Name="BossId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobBossId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recomend_Boss">
+          <End Role="Boss" Type="Self.Boss" Multiplicity="0..1" />
+          <End Role="Recomend" Type="Self.Recomend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boss">
+              <PropertyRef Name="BossId" />
+            </Principal>
+            <Dependent Role="Recomend">
+              <PropertyRef Name="RecomemdBossId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Cv">
+          <End Role="Cv" Type="Self.Cv" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cv">
+              <PropertyRef Name="CvId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobCVId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_OutNet">
+          <End Role="OutNet" Type="Self.OutNet" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutNet">
+              <PropertyRef Name="OutNetId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobPartOutNetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Part">
+          <End Role="Part" Type="Self.Part" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobPartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_SubjectJob">
+          <End Role="SubjectJob" Type="Self.SubjectJob" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectJob">
+              <PropertyRef Name="SubId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Workspace">
+          <End Role="Workspace" Type="Self.Workspace" Multiplicity="0..1" />
+          <End Role="Job" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workspace">
+              <PropertyRef Name="WSId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobWorkspaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PutInJob_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="PutInJob" Type="Self.PutInJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="PutInJob">
+              <PropertyRef Name="PutJobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sign_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="Sign" Type="Self.Sign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="Sign">
+              <PropertyRef Name="SignJobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Part">
+          <End Role="Part" Type="Self.Part" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Part">
+              <PropertyRef Name="PartId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserPartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PutInJob_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="PutInJob" Type="Self.PutInJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PutInJob">
+              <PropertyRef Name="PutUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Rav">
+          <End Role="Rav" Type="Self.Rav" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rav">
+              <PropertyRef Name="RavId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="RavId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_TopicQuestion">
+          <End Role="TopicQuestion" Type="Self.TopicQuestion" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TopicQuestion">
+              <PropertyRef Name="TopicId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QueTopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QueUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recomend_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Recomend" Type="Self.Recomend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Recomend">
+              <PropertyRef Name="RecomendUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_TypeConnect">
+          <End Role="TypeConnect" Type="Self.TypeConnect" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeConnect">
+              <PropertyRef Name="TypeConnectId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ReqTypeConectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ReqUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sign_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Sign" Type="Self.Sign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Sign">
+              <PropertyRef Name="SignUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_SubjectJob">
+          <End Role="SubjectJob" Type="Self.SubjectJob" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectJob">
+              <PropertyRef Name="SubId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IdialEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Area" EntityType="Self.Area" />
+          <EntitySet Name="Boss" EntityType="Self.Boss" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Cv" EntityType="Self.Cv" />
+          <EntitySet Name="Job" EntityType="Self.Job" />
+          <EntitySet Name="OutNet" EntityType="Self.OutNet" />
+          <EntitySet Name="Part" EntityType="Self.Part" />
+          <EntitySet Name="PutInJob" EntityType="Self.PutInJob" />
+          <EntitySet Name="Question" EntityType="Self.Question" />
+          <EntitySet Name="Rav" EntityType="Self.Rav" />
+          <EntitySet Name="Recomend" EntityType="Self.Recomend" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="Sign" EntityType="Self.Sign" />
+          <EntitySet Name="SubjectJob" EntityType="Self.SubjectJob" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TopicQuestion" EntityType="Self.TopicQuestion" />
+          <EntitySet Name="TypeConnect" EntityType="Self.TypeConnect" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Workspace" EntityType="Self.Workspace" />
+          <AssociationSet Name="FK_Job_Area" Association="Self.FK_Job_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boss_City" Association="Self.FK_Boss_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Boss" EntitySet="Boss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boss_SubjectJob" Association="Self.FK_Boss_SubjectJob">
+            <End Role="SubjectJob" EntitySet="SubjectJob" />
+            <End Role="Boss" EntitySet="Boss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Boss" Association="Self.FK_Job_Boss">
+            <End Role="Boss" EntitySet="Boss" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recomend_Boss" Association="Self.FK_Recomend_Boss">
+            <End Role="Boss" EntitySet="Boss" />
+            <End Role="Recomend" EntitySet="Recomend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_City" Association="Self.FK_Job_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_City" Association="Self.FK_User_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Cv" Association="Self.FK_Job_Cv">
+            <End Role="Cv" EntitySet="Cv" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_OutNet" Association="Self.FK_Job_OutNet">
+            <End Role="OutNet" EntitySet="OutNet" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Part" Association="Self.FK_Job_Part">
+            <End Role="Part" EntitySet="Part" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_SubjectJob" Association="Self.FK_Job_SubjectJob">
+            <End Role="SubjectJob" EntitySet="SubjectJob" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Workspace" Association="Self.FK_Job_Workspace">
+            <End Role="Workspace" EntitySet="Workspace" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PutInJob_Job" Association="Self.FK_PutInJob_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="PutInJob" EntitySet="PutInJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sign_Job" Association="Self.FK_Sign_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="Sign" EntitySet="Sign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Part" Association="Self.FK_User_Part">
+            <End Role="Part" EntitySet="Part" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PutInJob_User" Association="Self.FK_PutInJob_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PutInJob" EntitySet="PutInJob" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Rav" Association="Self.FK_Question_Rav">
+            <End Role="Rav" EntitySet="Rav" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_TopicQuestion" Association="Self.FK_Question_TopicQuestion">
+            <End Role="TopicQuestion" EntitySet="TopicQuestion" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_User" Association="Self.FK_Question_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recomend_User" Association="Self.FK_Recomend_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Recomend" EntitySet="Recomend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_TypeConnect" Association="Self.FK_Request_TypeConnect">
+            <End Role="TypeConnect" EntitySet="TypeConnect" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_User" Association="Self.FK_Request_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sign_User" Association="Self.FK_Sign_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Sign" EntitySet="Sign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_SubjectJob" Association="Self.FK_User_SubjectJob">
+            <End Role="SubjectJob" EntitySet="SubjectJob" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IdialModel1StoreContainer" CdmEntityContainer="IdialEntities3">
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="IdialModel1.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boss">
+            <EntityTypeMapping TypeName="IdialModel1.Boss">
+              <MappingFragment StoreEntitySet="Boss">
+                <ScalarProperty Name="BossId" ColumnName="BossId" />
+                <ScalarProperty Name="BossName" ColumnName="BossName" />
+                <ScalarProperty Name="BossTel" ColumnName="BossTel" />
+                <ScalarProperty Name="BossCityId" ColumnName="BossCityId" />
+                <ScalarProperty Name="BossMail" ColumnName="BossMail" />
+                <ScalarProperty Name="BossStreet" ColumnName="BossStreet" />
+                <ScalarProperty Name="BossStars" ColumnName="BossStars" />
+                <ScalarProperty Name="BossSubId" ColumnName="BossSubId" />
+                <ScalarProperty Name="BossPassword" ColumnName="BossPassword" />
+                <ScalarProperty Name="BossIsConnection" ColumnName="BossIsConnection" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="IdialModel1.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityAreaId" ColumnName="CityAreaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cv">
+            <EntityTypeMapping TypeName="IdialModel1.Cv">
+              <MappingFragment StoreEntitySet="Cv">
+                <ScalarProperty Name="CvId" ColumnName="CvId" />
+                <ScalarProperty Name="CvLink" ColumnName="CvLink" />
+                <ScalarProperty Name="CvUserId" ColumnName="CvUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job">
+            <EntityTypeMapping TypeName="IdialModel1.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="JobDateAdv" ColumnName="JobDateAdv" />
+                <ScalarProperty Name="JobAreaId" ColumnName="JobAreaId" />
+                <ScalarProperty Name="JobCityId" ColumnName="JobCityId" />
+                <ScalarProperty Name="JobSubId" ColumnName="JobSubId" />
+                <ScalarProperty Name="JobRole" ColumnName="JobRole" />
+                <ScalarProperty Name="JobPartId" ColumnName="JobPartId" />
+                <ScalarProperty Name="JobPartOutNetId" ColumnName="JobPartOutNetId" />
+                <ScalarProperty Name="JobWorkspaceId" ColumnName="JobWorkspaceId" />
+                <ScalarProperty Name="JobExperience" ColumnName="JobExperience" />
+                <ScalarProperty Name="JobCVId" ColumnName="JobCVId" />
+                <ScalarProperty Name="JobOfferId" ColumnName="JobOfferId" />
+                <ScalarProperty Name="JobStars" ColumnName="JobStars" />
+                <ScalarProperty Name="JobBossId" ColumnName="JobBossId" />
+                <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
+                <ScalarProperty Name="JobDateCaughtJob" ColumnName="JobDateCaughtJob" />
+                <ScalarProperty Name="JobIsByUs" ColumnName="JobIsByUs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OutNet">
+            <EntityTypeMapping TypeName="IdialModel1.OutNet">
+              <MappingFragment StoreEntitySet="OutNet">
+                <ScalarProperty Name="OutNetId" ColumnName="OutNetId" />
+                <ScalarProperty Name="OutNetName" ColumnName="OutNetName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Part">
+            <EntityTypeMapping TypeName="IdialModel1.Part">
+              <MappingFragment StoreEntitySet="Part">
+                <ScalarProperty Name="PartId" ColumnName="PartId" />
+                <ScalarProperty Name="PartName" ColumnName="PartName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PutInJob">
+            <EntityTypeMapping TypeName="IdialModel1.PutInJob">
+              <MappingFragment StoreEntitySet="PutInJob">
+                <ScalarProperty Name="PutId" ColumnName="PutId" />
+                <ScalarProperty Name="PutJobId" ColumnName="PutJobId" />
+                <ScalarProperty Name="PutUserId" ColumnName="PutUserId" />
+                <ScalarProperty Name="PutDate" ColumnName="PutDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question">
+            <EntityTypeMapping TypeName="IdialModel1.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="QueId" ColumnName="QueId" />
+                <ScalarProperty Name="QueUserId" ColumnName="QueUserId" />
+                <ScalarProperty Name="Question1" ColumnName="Question" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="RavId" ColumnName="RavId" />
+                <ScalarProperty Name="QueTopicId" ColumnName="QueTopicId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rav">
+            <EntityTypeMapping TypeName="IdialModel1.Rav">
+              <MappingFragment StoreEntitySet="Rav">
+                <ScalarProperty Name="RavId" ColumnName="RavId" />
+                <ScalarProperty Name="RavName" ColumnName="RavName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recomend">
+            <EntityTypeMapping TypeName="IdialModel1.Recomend">
+              <MappingFragment StoreEntitySet="Recomend">
+                <ScalarProperty Name="RecomendId" ColumnName="RecomendId" />
+                <ScalarProperty Name="RecomendUserId" ColumnName="RecomendUserId" />
+                <ScalarProperty Name="RecomemdBossId" ColumnName="RecomemdBossId" />
+                <ScalarProperty Name="RecomendInfo" ColumnName="RecomendInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Request">
+            <EntityTypeMapping TypeName="IdialModel1.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="ReqId" ColumnName="ReqId" />
+                <ScalarProperty Name="ReqUserId" ColumnName="ReqUserId" />
+                <ScalarProperty Name="ReqContents" ColumnName="ReqContents" />
+                <ScalarProperty Name="ReqTypeConectId" ColumnName="ReqTypeConectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sign">
+            <EntityTypeMapping TypeName="IdialModel1.Sign">
+              <MappingFragment StoreEntitySet="Sign">
+                <ScalarProperty Name="SignId" ColumnName="SignId" />
+                <ScalarProperty Name="SignJobId" ColumnName="SignJobId" />
+                <ScalarProperty Name="SignUserId" ColumnName="SignUserId" />
+                <ScalarProperty Name="SignDate" ColumnName="SignDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectJob">
+            <EntityTypeMapping TypeName="IdialModel1.SubjectJob">
+              <MappingFragment StoreEntitySet="SubjectJob">
+                <ScalarProperty Name="SubId" ColumnName="SubId" />
+                <ScalarProperty Name="SubName" ColumnName="SubName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="IdialModel1.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicQuestion">
+            <EntityTypeMapping TypeName="IdialModel1.TopicQuestion">
+              <MappingFragment StoreEntitySet="TopicQuestion">
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeConnect">
+            <EntityTypeMapping TypeName="IdialModel1.TypeConnect">
+              <MappingFragment StoreEntitySet="TypeConnect">
+                <ScalarProperty Name="TypeConnectId" ColumnName="TypeConnectId" />
+                <ScalarProperty Name="TypeConnectName" ColumnName="TypeConnectName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="IdialModel1.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserTel" ColumnName="UserTel" />
+                <ScalarProperty Name="UserMail" ColumnName="UserMail" />
+                <ScalarProperty Name="UserCityId" ColumnName="UserCityId" />
+                <ScalarProperty Name="UserSubId" ColumnName="UserSubId" />
+                <ScalarProperty Name="UserIsChizuk" ColumnName="UserIsChizuk" />
+                <ScalarProperty Name="UserIsUpdate" ColumnName="UserIsUpdate" />
+                <ScalarProperty Name="UserPartId" ColumnName="UserPartId" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workspace">
+            <EntityTypeMapping TypeName="IdialModel1.Workspace">
+              <MappingFragment StoreEntitySet="Workspace">
+                <ScalarProperty Name="WSId" ColumnName="WSId" />
+                <ScalarProperty Name="WSName" ColumnName="WSName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
