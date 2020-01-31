@@ -30,13 +30,21 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table> -->
+  <br>
+  <br>
+  <br>
+  <div *ngIf="load" style="width: 100vw;height:85vh;background-color:white">
+  <div class="loader2"  ></div>
+</div>
 <section class=" pagination-centered">
   <div class="container justify-content-center">
-    <div class="row">
+    <div class="row justify-content-center">
       <!-- Free Tier -->
-      <div>
+      <div class="col-6" >
+        <h2>{{managerService.jobSign?.length }}
+          חברות מחכות לנו עדין :) </h2>
         <!-- <div class="col-lg-6"> -->
-        <div *ngFor="let j of jobSign" class="center-block">
+        <div *ngFor="let j of managerService.jobSign" class="center-block">
 
           <div class="card mb-5 mb-lg-0">
             <div class="card-body">
@@ -44,22 +52,22 @@
               <h6 class="card-price text-center"><span class="period">{{j.CompanyName}}</span></h6>
               <hr>
               <div class="fa-ul">
-                <p>לעבודה בחברת:</p>
+                <p>לעבודה בחברת: </p>
                 <p>{{j.CompanyName}}</p>
-                <p *ngIf="j.AreaName"><b>באיזור:</b>{{j.AreaName}}</p>
-                <p *ngIf="j.CityName"><b>בעיר:</b>{{j.CityName}}</p>
-                <p><b>למקצוע:</b>{{j.SubjectName}}</p>
-                <p><b>לתפקיד:</b>{{j.JobRole}}</p>
+                <p *ngIf="j.AreaName"><b>באיזור: </b>{{j.AreaName}}</p>
+                <p *ngIf="j.CityName"><b>בעיר: </b>{{j.CityName}}</p>
+                <p><b>למקצוע: </b>{{j.SubjectName}}</p>
+                <p><b>לתפקיד: </b>{{j.JobRole}}</p>
                 <p><b>תאור העובדה</b></p>
                 <p>{{j.JobDescribe}}</p>
-                <p><b>שפורסמה בתאריך:</b>{{j.JobDateAdv}}</p>
-                <p><b>הדרישות חובה:</b>{{j.JobRequire}}</p>
-                <p><b>נסיון שדרוש:</b>{{j.JobExperience}} </p>
+                <p><b>שפורסמה בתאריך: </b>{{j.JobDateAdv}}</p>
+                <p><b>הדרישות חובה: </b>{{j.JobRequire}}</p>
+                <p><b>נסיון שדרוש: </b>{{j.JobExperience}} </p>
                 
                 <!-- <p><b>מס' כוכבים</b> {{j.JobStars}}</p> -->
                 <p><b>סביבת עבודה: </b>{{j.WSName}}</p>
                 <p><b>חסימת אינטרנט: </b>{{j.OutNetName}}</p>
-                <p><b>סוג משרה: </b>{{j.PartName}}</p>
+                <p><b>תחום משרה: </b>{{j.PartName}}</p>
               
 
               </div>
@@ -78,7 +86,10 @@
 
     </div>
   </div>
- 
+ <br>
+ <br>
+ <br>
+ <br>
 
 
 </section>

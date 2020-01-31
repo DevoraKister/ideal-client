@@ -7,6 +7,9 @@
     background-color: rgba(76,179,255,1.0);
   
   }
+  h2,h5,p,div{
+  direction: rtl;
+  }
   
   h2 {
     font-family: sans-serif;

@@ -6,3 +6,7 @@
     background-color:ghostwhite;
     box-shadow: rgb(66, 77, 87);
 }
+.mat-form-field,input{
+    direction: rtl;
+    text-align: right;
+}

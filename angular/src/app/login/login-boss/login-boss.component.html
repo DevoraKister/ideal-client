@@ -1,13 +1,17 @@
 <!--                                       -->
-<body class="align">
 
+<button mat-icon-button  (click)="onNoClick()" ><i class="material-icons" >
+  close
+  </i></button>
+<body class="align">
+<h1>הרשמה - שיתוף</h1>
     <div class="grid">
   
       <form action="https://httpbin.org/post" method="POST" class="form login" (ngSubmit)="password.reset();mail.reset()">
 
         <div class="form__field" id="login-show">
-          <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">שם</span></label>
-          <input id="login__username" type="text" name="username" class="form__input" placeholder="מייל " [(ngModel)]="currentBoss.BossMail" #mail required>
+          <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">מייל</span></label>
+          <input id="login__username" type="mail" name="username" class="form__input" placeholder="מייל " [(ngModel)]="currentBoss.BossMail" #mail required>
         </div>
   
         <div class="form__field">
@@ -16,13 +20,13 @@
         </div>
   
         <div class="form__field">
-          <input (click)="login()" type="submit" value="הכנס">
+          <input (click)="login();" type="submit" value="כניסה">
         </div>
-<input type="submit" name="button" value="אפס שדות">
+<!-- <input type="submit" name="button" value="אפס שדות"> -->
   
       </form>
   
-      <p class="text--center">עדין לא רשום? <a [routerLink]="['/login/register-boss']">הרשם עכשיו</a> 
+      <p class="text--center">עדין לא מחוברת? <a [routerLink]="['/login/register-boss']" style="color: black">הרשמי עכשיו</a> 
         <!-- <svg class="icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use></svg> -->
       </p>

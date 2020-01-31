@@ -6,7 +6,7 @@ import { UserService } from '../app/shared/services'
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private userSrv: UserService, private router: Router) { }
+  constructor(public userSrv: UserService, public router: Router) { }
   async canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {

@@ -5,6 +5,14 @@ a,p{
     
 }
 h6{
-    text-align: center;
+    text-align: right;
     direction: rtl;
+    /* border-bottom: 1px solid #fff; */
+}
+.title{
+    border-bottom: 1px solid #fff;
+
+}
+.copyright{
+    color: black;
 }

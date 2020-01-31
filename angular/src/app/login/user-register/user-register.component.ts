@@ -21,6 +21,7 @@ import { ErrorStateMatcher } from '@angular/material';
 import * as  sha256 from 'async-sha256';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { AutocomleteValidateDirective } from 'src/app/directives/autocomlete-validate.directive';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -50,16 +51,16 @@ export class UserRegisterComponent implements OnInit
   citiesGroup: FormControl = new FormControl();
   areasGroup: FormControl = new FormControl();
   currentUser: User = new User();
-  private cities: City[];
-  private parts: Part[];
-  private subs: SubjectJob[];
-  private areas: Area[];
-  private jobParameters: JobParameters = new JobParameters();
-  private cityText: string = "";
-  private currentCity: string = "";
-  matcher = new MyErrorStateMatcher();
+  public cities: City[];
+  public parts: Part[];
+  public subs: SubjectJob[];
+  public areas: Area[];
+  public jobParameters: JobParameters = new JobParameters();
+  public cityText: string = "";
+  public currentCity: string = "";
+  public = new MyErrorStateMatcher();
   hashPassword: string;
-  areaText:string;
+  areaText: string;
   @ViewChild('autoGroup1') auto;
   // cities: City[] =  [];
 
@@ -68,8 +69,8 @@ export class UserRegisterComponent implements OnInit
   subOptions: Observable<SubjectJob[]>;
   areaOptions: Observable<Area[]>;
 
-  private subscriber;
-
+  public subscriber;
+// emailControl=new FormControl('',[Validators.required,Validators.email]);
   citiesForm: FormGroup = this._formBuilder.group({
     citiesGroup: ''
   });
@@ -83,8 +84,15 @@ export class UserRegisterComponent implements OnInit
     areasGroup: '',
   });
 
-  constructor(private userService: UserService, private router: Router, private jobService: JobService, private header: HeaderComponent, private _formBuilder: FormBuilder) { }
+  constructor(public userService: UserService, public titleService: Title, public router: Router,
+    public jobService: JobService, public header: HeaderComponent, public _formBuilder: FormBuilder) {
+    this.titleService.setTitle("מחפשת משרה | הרשמה");
 
+  }
+//   getErrorMessageEmail(){
+// return this.emailControl.hasError('required')?'אתה חייב להכניס ערך':
+// this.emailControl.hasError('email')?'מייל לא תקין':'';
+//   }
   ngOnInit() {
     this.subscriber = this.jobService.getJobParameters().subscribe(state => {
       this.jobParameters = state;
@@ -93,7 +101,6 @@ export class UserRegisterComponent implements OnInit
       this.parts = this.jobParameters.Parts;
       this.subs = this.jobParameters.SubjectJob;
       // this.cityOptions=this.jobParameters.Cities;
-
     });
 
     this.cityOptions = this.citiesForm.get('citiesGroup')!.valueChanges
@@ -119,7 +126,7 @@ export class UserRegisterComponent implements OnInit
   }
 
 
-  private _filterGroup(value: string): City[] {
+  public _filterGroup(value: string): City[] {
     if (value) {
       return this.cities
         .map(city => ({ CityName: _filter(city.CityName, value) }))
@@ -128,7 +135,7 @@ export class UserRegisterComponent implements OnInit
 
     return this.cities;
   }
-  private _filterGroupPart(value: string): Part[] {
+  public _filterGroupPart(value: string): Part[] {
     if (value) {
       return this.parts
         .map(part => ({ PartName: _filter(part.PartName, value) }))
@@ -137,7 +144,7 @@ export class UserRegisterComponent implements OnInit
 
     return this.parts;
   }
-  private _filterGroupSub(value: string): SubjectJob[] {
+  public _filterGroupSub(value: string): SubjectJob[] {
     if (value) {
       return this.subs
         .map(sub => ({ SubName: _filter(sub.SubName, value) }))
@@ -146,7 +153,7 @@ export class UserRegisterComponent implements OnInit
 
     return this.subs;
   }
-  private _filterGroupArea(value: string): Area[] {
+  public _filterGroupArea(value: string): Area[] {
     if (value) {
       return this.areas
         .map(area => ({ AreaName: _filter(area.AreaName, value) }))
@@ -194,12 +201,14 @@ export class UserRegisterComponent implements OnInit
   //   else
   //     alert("j");
   // }
-  areaName() {
-    var id = this.areas.find(p => p.AreaName == this.areaText).AreaId;
+  areaName(area) {
+    if (area)
+      debugger
+    var id = this.areas.find(p => p.AreaName == area);
     if (id)
-      this.getCity(id);
-      else
-      this.cities=null;
+      this.getCity(id.AreaId);
+    else
+      this.cities = null;
   }
   getCityNames() {
     return this.cities ? this.cities.map(m => m.CityName) : [];
@@ -226,7 +235,7 @@ export class UserRegisterComponent implements OnInit
     this.currentUser.UserPartId = this.parts.find(c => c.PartName == part.options.first.value).PartId;
     this.currentUser.UserCityId = this.cities.find(c => c.CityName == city.options.first.value).CityId;
     this.currentUser.UserSubId = this.subs.find(c => c.SubName == sub.options.first.value).SubId;
-
+    this.currentUser.UserIsChizuk = true;
 
 
     this.userService.register(this.currentUser).subscribe(res => {
@@ -235,13 +244,15 @@ export class UserRegisterComponent implements OnInit
       name += this.fileToUpload.name.substr(this.fileToUpload.name.lastIndexOf('.'));;
       _formData.append("file", this.fileToUpload, name);
       this.userService.sendFile(_formData).subscribe(res => { })
-      console.log(this.fileToUpload);
+      // console.log(this.fileToUpload);
 
       if (res) {
 
         this.router.navigate(['register/register-user']);
+        debugger
         this.userService.user = res;
         this.userService.boss = null;
+        localStorage.removeItem("isBoss");
         localStorage.setItem("token", this.currentUser.password);
         // localStorage.setItem("UserPassword",this.currentUser.password);
         localStorage.setItem("UserMail", res.UserMail);
@@ -249,8 +260,8 @@ export class UserRegisterComponent implements OnInit
         localStorage.setItem("UserId", res.UserId.toString());
         this.header.isUser();
         Swal.fire({
-          title: 'success!',
-          text: 'נרשמת בהצלחה!!!',
+          title: 'ברוכה הבאה',
+          text: 'נרשמת בהצלחה',
           type: 'success',
           confirmButtonText: 'המשך'
         })
@@ -468,7 +479,7 @@ export class UserRegisterComponent implements OnInit
 //   city(id: number) {
 //     this.currentUser.UserCityId = id;
 //   }
-  
+
 //   areaName() {
 //   debugger;
 //     var id = this.areas.find(p => p.AreaName == this.areaText).AreaId;

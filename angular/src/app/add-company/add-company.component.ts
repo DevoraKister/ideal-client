@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 export interface StateGroup {
   letter: string;
@@ -25,12 +26,16 @@ export const _filter = (opt: string[], value: string): string[] => {
   styleUrls: ['./add-company.component.css']
 })
 export class AddCompanyComponent implements OnInit {
-  private cities: City[];
-  private jobParameters:JobParameters;
-  private currentCompany: Company = new Company();
-  private subscriber;
+  public cities: City[];
+  public jobParameters:JobParameters;
+  public currentCompany: Company = new Company();
+  public subscriber;
   stateGroupOptions: Observable<StateGroup[]>;
-  constructor(private router: Router, private jobService: JobService, private bossRe: BossRegisterComponent,private _formBuilder: FormBuilder) { }
+  constructor(public router: Router, public jobService: JobService,
+    public titleService:Title, public bossRe: BossRegisterComponent,public _formBuilder: FormBuilder) { 
+    this.titleService.setTitle("הוספת חברה");
+
+    }
 
   ngOnInit() {
     this.subscriber = this.jobService.getJobParameters().subscribe(state => {
@@ -50,17 +55,16 @@ export class AddCompanyComponent implements OnInit {
     });
   }
   addCompanyParameters(area1) {
-
     this.currentCompany.CompanyAreaId = area1.value;
     this.jobService.addCompany(this.currentCompany).subscribe(res => {
       this.bossRe.company=res;
       Swal.fire({
-        title: 'success!',
-        text: 'נרשמת בהצלחה!!!',
+        title: 'תודה',
+        text: 'הוספת החברה התבצעה בהצלחה',
         type: 'success',
-        confirmButtonText: 'המשך'
+        confirmButtonText: 'להמשך'
       })
-      this.router.navigate(['home']);
+      // this.router.navigate(['home']);
     },
       err => { 
       },);
@@ -146,7 +150,7 @@ stateGroups: StateGroup[] = [{
 
 
 
-private _filterGroup(value: string): StateGroup[] {
+public _filterGroup(value: string): StateGroup[] {
   if (value) {
     return this.stateGroups
       .map(group => ({letter: group.letter, names: _filter(group.names, value)}))

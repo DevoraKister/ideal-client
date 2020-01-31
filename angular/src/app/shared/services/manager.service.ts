@@ -11,15 +11,20 @@ import { TopicQuestion } from '../models/topicQuestion';
 import { Question } from '../models/question';
 import { User } from '../models/user';
 import { Statistics } from '../models/Statistics';
+import { Boss } from '../models/boss';
+import { Job } from '../models/job';
+import { Adv } from '../models/adv';
 @Injectable({
   providedIn: 'root'
 })
 export class ManagerService {
- 
-
+  public  signedUser:User[];
+  public  jobId:number;
+  public  companyId:number;
+  jobSign: JobView[]=new Array();
   apiURL: string = 'http://localhost:53790/api/manager/';
   str: string;
-  constructor(private httpClient: HttpClient) {
+  constructor(public httpClient: HttpClient) {
   }
 
   getJobToCheck(): Observable<JobView[]> {
@@ -58,4 +63,60 @@ return this.httpClient.get<User[]>(this.apiURL+'userToSpecificJob/'+jobId);
   getknowledge() {
     return this.httpClient.get<Statistics>(this.apiURL + 'getknowledge/');
   }
+  sendCv(userId):Observable<JobView[]>{
+    return this.httpClient.get<JobView[]>(this.apiURL+'sendCv/'+this.jobId+"/"+userId);
+  }
+  timerSmartAgent(){
+    
+  }
+
+  deleteQuestion(idQustion){
+    return this.httpClient.get<JobView[]>(this.apiURL+'removeQuestion/'+idQustion);
+
+  }
+
+  addAdv(adv:Adv){
+    return this.httpClient.post(this.apiURL +'addAdv',adv);
+
+  }
+  sendFile(file): any {
+    return this.httpClient.post(`${this.apiURL}/fileAdv`, file);
+}
+removeAdv(id:number){
+  return this.httpClient.get<Adv[]>(this.apiURL +'removeAdv/'+id);
+
+}
+
+  // ---------------database------------------------
+  getUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>(this.apiURL + 'getAllUsers');
+  }
+  removeUser(userId: number): Observable<User[]> {
+   
+    return this.httpClient.get<User[]>(this.apiURL + 'removeUser/' + userId);
+  }
+
+  getBossList(): Observable<Boss[]> 
+  {
+    debugger;
+    return this.httpClient.get<Boss[]>(this.apiURL + 'geBossList/');
+  }
+  getJobsList(): Observable<JobView[]> 
+  {
+    debugger;
+    return this.httpClient.get<JobView[]>(this.apiURL + 'getJobsList/');
+  }
+  removeJob(jobId:number): Observable<JobView[]> 
+  {
+    debugger;
+    return this.httpClient.get<JobView[]>(this.apiURL + 'removeJob/'+jobId);
+  }
+  getJobById(idJob1: number): Observable <Job> {
+    return this.httpClient.get<Job>(this.apiURL + 'getJobById/'+idJob1);
+  }
+
+  removeBoss(bossId: any):Observable<Boss[]> {
+    return this.httpClient.get<Boss[]>(this.apiURL + 'removeBoss/' + bossId);
+  }
+
 }

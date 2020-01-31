@@ -9,8 +9,8 @@ import { Statistics } from 'src/app/shared/models/statistics';
   styleUrls: ['./get-statistics.component.css']
 })
 export class GetStatisticsComponent implements OnInit {
-  statistics:Statistics;
-   constructor(private managerService:ManagerService) { }
+  statistics:Statistics=new Statistics();
+   constructor(public managerService:ManagerService) { }
  
    ngOnInit() {
      this.managerService.getknowledge().subscribe(s => {
@@ -19,7 +19,9 @@ export class GetStatisticsComponent implements OnInit {
      
  
      )
+     
   
    }
+   
  
  }

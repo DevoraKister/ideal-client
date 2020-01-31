@@ -7,10 +7,10 @@ import { JobService } from './shared/services/job.service';
 })
 export class CityPipePipe implements PipeTransform {
 
-  constructor(private jobService: JobService) {
+  constructor(public jobService: JobService) {
 
   }
-  private areas: Area[];
+  public areas: Area[];
 
   transform(area: string, cities: City[]): any {
     this.jobService.getJobParameters().subscribe(state => {

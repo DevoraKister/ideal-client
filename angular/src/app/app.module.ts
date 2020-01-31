@@ -6,29 +6,31 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import {JobService} from '../app/shared/services/job.service';
+import { JobService } from '../app/shared/services/job.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginBossComponent } from './login/login-boss/login-boss.component';
 import { AdvComponent } from './home/adv/adv.component';
 import { JobTableComponent } from './home/job-table/job-table.component';
 import { LoginUserComponent } from './login/login-user/login-user.component';
-import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component';
-import { RabanimComponent } from './rabanim/rabanim.component';
 import { InformationComponent } from './information/information.component';
 import { SmartAgentComponent } from './smart-agent/smart-agent.component';
-import { JobPostingComponent } from './job-posting/job-posting.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import {
-  MatButtonModule,MatFormFieldModule ,MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule,MatPaginatorModule
+  MatButtonModule, MatFormFieldModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatPaginatorModule, MatDialogRef, MAT_CHECKBOX_CLICK_ACTION, ErrorStateMatcher
 } from '@angular/material';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import {NgxDocViewerModule}from 'ngx-doc-viewer'
+import { NgxDocViewerModule } from 'ngx-doc-viewer'
 import { BossRegisterComponent } from './login/boss-register/boss-register.component';
 import { UserRegisterComponent } from './login/user-register/user-register.component';
 import { UserService } from './shared/services';
@@ -48,18 +50,37 @@ import { WatchingCompaniesComponent } from './manager/watching-companies/watchin
 import { RecomendComponent } from './recomend/recomend.component';
 import { from } from 'rxjs';
 import { ForumComponent } from './forum/forum.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AnswerFromRavComponent } from './manager/answer-from-rav/answer-from-rav.component';
-import { SignedUsersComponent } from './signed-users/signed-users.component';
 import { RecommendsShowComponent } from './recommends-show/recommends-show.component';
 import { AutocomleteValidateDirective } from './directives/autocomlete-validate.directive';
 import { CityPipePipe } from './city-pipe.pipe';
 import { ShowOneJobComponent } from './show-one-job/show-one-job.component';
-import {NumbersComponent} from './home/numbers/numbers.component';
+import { NumbersComponent } from './home/numbers/numbers.component';
 import { GetStatisticsComponent } from './manager/get-statistics/get-statistics.component';
 import { CvToSendComponent } from './manager/cv-to-send/cv-to-send.component';
+// import { BlodPipe } from './blod.pipe';
+// import { LoaderComponent } from './loader/loader.component';
+// import { BlobPipe } from './blob.pipe';
+import { BlodPipe } from '../app/blod.pipe';
+import { EnterManagerComponent } from './manager/enter-manager/enter-manager.component'
 // import { ForumComponent } from './shared/models/forum/forum.component';
+
+import { RatingModule } from 'ng-starrating';
+import { PersonalAreaComponent } from './personal-area/personal-area.component';
+import { ResetComponent } from './login/reset/reset.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { DatabaseComponent } from './manager/database/database.component';
+import { BossdetailsComponent } from './manager/database/bossdetails/bossdetails.component';
+import { EditJobComponent } from './manager/database/edit-job/edit-job.component';
+import { EditUsersComponent } from './manager/database/edit-users/edit-users.component';
+import { JobsListComponent } from './manager/database/jobs-list/jobs-list.component';
+import { UpdateBossComponent } from './manager/database/update-boss/update-boss.component';
+import { UserdetailsComponent } from './manager/database/userdetails/userdetails.component';
+import { EditAdvComponent } from './manager/edit-adv/edit-adv.component';
+import { TermsComponent } from './terms/terms.component';
 
 const routes: Routes = [
   {
@@ -69,6 +90,8 @@ const routes: Routes = [
       { path: 'login-boss', component: LoginBossComponent },
       { path: 'register-user', component: UserRegisterComponent },
       { path: 'register-boss', component: BossRegisterComponent },
+      { path: 'reset', component: ResetComponent },
+      { path: 'reset-password', component: ResetPasswordComponent },
     ]
   },
   //
@@ -88,7 +111,6 @@ const routes: Routes = [
   },
   { path: 'information', component: InformationComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'rabanim', component: RabanimComponent },
   { path: 'forum', component: ForumComponent },
   { path: 'smart-agent', component: SmartAgentComponent },
   { path: 'add-job', component: AddJobComponent },
@@ -99,19 +121,34 @@ const routes: Routes = [
   { path: 'show-recommend/:id', component: RecommendsShowComponent },
   { path: 'sign-to-job/:id', component: SignToJobComponent },
   { path: 'show-jobs/:str', component: ShowOneJobComponent },
-
+  { path: 'personal-area', component: PersonalAreaComponent },
+  { path: "terms", component: TermsComponent },
   { path: '', component: HomeComponent },
-
+  // {path: '404', component: NotFoundComponent},
+  // {path: '**', redirectTo: '/404'},
   //manager
-  { path: 'check', component: JobToCheckComponent},
+  { path: 'nbvladmin', component: EnterManagerComponent },
+  { path: 'check', component: JobToCheckComponent, canActivate: [AuthGuard] },
   // { path: 'check', component: JobToCheckComponent,canActivate:[AuthGuard] },
-  { path: 'answer-from-rav', component: AnswerFromRavComponent},
-  { path: 'statistic', component: GetStatisticsComponent},
-  { path: 'sign-to-job-manager', component: SignToJobManagerComponent },
-  {path:'signed-users/:jobid',component:SignedUsersComponent},
-  { path: 'header-manager', component: HeaderManagerComponent,canActivate:[AuthGuard] },
-  { path: 'watching-companies', component: WatchingCompaniesComponent,canActivate:[AuthGuard] },
-  { path: 'cvUserToSend', component: CvToSendComponent},
+  { path: 'answer-from-rav', component: AnswerFromRavComponent, canActivate: [AuthGuard] },
+  { path: 'statistic', component: GetStatisticsComponent, canActivate: [AuthGuard] },
+  { path: 'sign-to-job-manager', component: SignToJobManagerComponent, canActivate: [AuthGuard] },
+  { path: 'header-manager', component: HeaderManagerComponent, canActivate: [AuthGuard] },
+  { path: 'watching-companies', component: WatchingCompaniesComponent, canActivate: [AuthGuard] },
+  { path: 'cvUserToSend', component: CvToSendComponent, canActivate: [AuthGuard] },
+  { path: 'adv', component: EditAdvComponent, canActivate: [AuthGuard] },
+  {
+    path: 'database', component: DatabaseComponent,
+    children: [
+      { path: 'edit-users', component: EditUsersComponent },
+      { path: 'userdetails', component: UserdetailsComponent },
+      { path: 'bossdetails', component: BossdetailsComponent },
+      { path: 'update-boss', component: UpdateBossComponent },
+      // { path: 'subject-list', component: SubjectListComponent ,canActivate:[AuthGuard]},
+      { path: 'jobs-list', component: JobsListComponent },
+      { path: 'edit-job', component: EditJobComponent },
+    ]
+  }
   // { path: 'cvUserToSend/:userId', component: CvToSendComponent,canActivate:[AuthGuard] },
 ];
 
@@ -128,33 +165,46 @@ const routes: Routes = [
     JobTableComponent,
     LoginUserComponent,
     AboutComponent,
-    RabanimComponent,
     InformationComponent,
     SmartAgentComponent,
-   JobPostingComponent,
-   BossRegisterComponent,
-   UserRegisterComponent,
-   UserRegisterComponent,
-   ShortStringPipe,
-   AddJobComponent,
-   AddCompanyComponent,
-   SurveyComponent,
-   ConnectComponent,
-   SignToJobComponent,
-   JobToCheckComponent,
-   HeaderManagerComponent,
-   SignToJobManagerComponent,
-   WatchingCompaniesComponent,
-   RecomendComponent,
-   ForumComponent,
-   AnswerFromRavComponent,
-   SignedUsersComponent,
-   RecommendsShowComponent,
-   AutocomleteValidateDirective,
-   CityPipePipe,
-   ShowOneJobComponent,
-   GetStatisticsComponent,
-   CvToSendComponent,
+    BossRegisterComponent,
+    UserRegisterComponent,
+    UserRegisterComponent,
+    ShortStringPipe,
+    AddJobComponent,
+    AddCompanyComponent,
+    SurveyComponent,
+    ConnectComponent,
+    SignToJobComponent,
+    JobToCheckComponent,
+    HeaderManagerComponent,
+    SignToJobManagerComponent,
+    WatchingCompaniesComponent,
+    RecomendComponent,
+    ForumComponent,
+    AnswerFromRavComponent,
+    RecommendsShowComponent,
+    AutocomleteValidateDirective,
+    CityPipePipe,
+    ShowOneJobComponent,
+    GetStatisticsComponent,
+    CvToSendComponent,
+    //  LoaderComponent,
+    BlodPipe,
+    EnterManagerComponent,
+    PersonalAreaComponent,
+    ResetComponent,
+    ResetPasswordComponent,
+    NotFoundComponent,
+    DatabaseComponent,
+    BossdetailsComponent,
+    EditJobComponent,
+    EditUsersComponent,
+    JobsListComponent,
+    UpdateBossComponent,
+    UserdetailsComponent,
+    EditAdvComponent,
+    TermsComponent,
 
 
 
@@ -163,10 +213,11 @@ const routes: Routes = [
   ],
   imports: [
     BrowserAnimationsModule,
+    MatCheckboxModule,
     MatPaginatorModule,
     MatAutocompleteModule,
+    MatBottomSheetModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
@@ -181,16 +232,22 @@ const routes: Routes = [
     FormsModule,
     MatSelectModule,
     MatSnackBarModule,
-
+    MatTooltipModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatListModule,
     RouterModule.forRoot(
       routes,
       {
-        enableTracing: true
-       }
+        enableTracing: true,
+        onSameUrlNavigation: 'reload'
+      }
     ),
     ReactiveFormsModule,
     PdfViewerModule,
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    RatingModule,
+    // ErrorStateMatcher
 
   ],
   // exports:[
@@ -206,6 +263,7 @@ const routes: Routes = [
   //   MatProgressSpinnerModule
   // ],
   providers: [
+    { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check' },
     JobTableComponent,
     UserService,
     JobService,
@@ -216,9 +274,13 @@ const routes: Routes = [
     AuthGuard,
     ForumComponent,
     RecommendsShowComponent,
-    CvToSendComponent
+    SignToJobManagerComponent,
+    CvToSendComponent,
+    { provide: MatDialogRef, useValue: {} }
+
     ,
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

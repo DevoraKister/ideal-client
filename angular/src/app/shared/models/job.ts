@@ -16,6 +16,9 @@ export class Job{
    JobStatus:boolean;
    JobSubId:number;
    JobWorkspaceId:number;
+   JobCompanyId:number;
+   JobRequire:string;
+   JobDescribe:string;
 
     // constructor(jobAreaId,jobBossId,jobCityId,jobCVLink,jobDateAdv,jobDateCaughtJob,jobExperience,jobId,jobIsByUs,jobOfferId,jobPartId,jobPartOutNetId,jobRole,jobStars,jobStatus,jobSubId,jobWorkspaceId)
     // {

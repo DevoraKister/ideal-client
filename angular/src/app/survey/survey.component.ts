@@ -5,6 +5,8 @@ import { JobService } from '../shared/services/job.service';
 import { Subject } from 'rxjs';
 import { SubjectJob } from '../shared/models/subjectJob';
 import {MatRadioModule} from '@angular/material/radio';
+import { MatDialog } from '@angular/material';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
@@ -15,7 +17,7 @@ export class SurveyComponent implements OnInit {
   sub: SubjectJob[];
   countOpen: number;
 
-  constructor(private router: Router, private jobService: JobService) { }
+  constructor(public router: Router, public jobService: JobService,public dialog:MatDialog) { }
 
   ngOnInit() {
     this.jobService.getJobParameters().subscribe(res => {
@@ -35,10 +37,13 @@ export class SurveyComponent implements OnInit {
   sendSurvey() {
     this.jobService.sendSurvey(this.s).subscribe(res => {
       localStorage.setItem("SurveyOpened", "stop");
-
+      this.dialog.closeAll();
     }
       , err => {
 
       })
+  }
+  onNoClick(): void {
+    this.dialog.closeAll();
   }
 }

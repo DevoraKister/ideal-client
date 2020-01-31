@@ -11,11 +11,11 @@ import { JobService } from '../shared/services/job.service';
 export class RecomendComponent implements OnInit 
 {
   currentRecomend:Recomend=new Recomend();
-  
-  Companies:Company[];
-  private subscriber;
 
-  constructor( private jobService: JobService) { }
+  Companies:Company[];
+  public subscriber;
+
+  constructor( public jobService: JobService) { }
   ngOnInit() {
 
     this.subscriber = this.jobService.getCompanies().subscribe(state => {
@@ -31,6 +31,4 @@ export class RecomendComponent implements OnInit
      
     });
   }
-  
- 
 }

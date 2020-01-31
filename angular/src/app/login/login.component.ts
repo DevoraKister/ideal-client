@@ -8,7 +8,7 @@ import { FormGroup, Validators ,FormBuilder} from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, ) { }
+  constructor(public router: Router, ) { }
 
  
   ngOnInit() {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Statistics } from '../shared/models/Statistics';
+import { ManagerService } from '../shared/services/manager.service';
 
 @Component({
   selector: 'app-information',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./information.component.css']
 })
 export class InformationComponent implements OnInit {
-
-  constructor() { }
+  public statistics:Statistics=new Statistics();;
+  constructor(public managerservice: ManagerService) { }
 
   ngOnInit() {
+    this.managerservice.getknowledge().subscribe(state => {
+      this.statistics = state;
+     
+    });
   }
 
 }

@@ -1,57 +1,53 @@
-<!-- Footer -->
-<footer class="page-footer font-small  pt-4" style="background-color:dimgrey">
 
-  <!-- Footer Links -->
+<footer class="page-footer font-small  pt-4" style="background-color:rgb(38, 39, 39)">
+
   <div class="container text-center text-md-left">
 
-    <!-- Footer links -->
     <div class="row text-center text-md-left mt-3 pb-3">
 
-      <!-- Grid column -->
       <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+        <h6 class="text-uppercase mb-4 font-weight-bold"><span class="title">צרי קשר</span></h6>
         <p>
-          <i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+          <i class="fas fa-home mr-3"></i> נחמיה 50 בני ברק</p>
         <p>
-          <i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
-        <p>
-          <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-        <p>
-          <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+          <p>
+            <i class="fas fa-home mr-3"></i> ישראל</p>
+          <p>
+            <i class="fas fa-envelope mr-3"></i> jobs@jobs.co.il</p>
+          <p>
+            <i class="fas fa-phone mr-3"></i> 03-5785928</p>
+
       </div>
-      <!-- Grid column -->
 
       <hr class="w-100 clearfix d-md-none">
       <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 font-weight-bold">?מחפש משרה</h6>
+        <h6 class="text-uppercase mb-4 font-weight-bold"><span class="title">מחפשת משרה ?</span></h6>
         <p>
-          <a [routerLink]="['/home/job-table']">לוח המשרות </a>
+          <a [routerLink]="['/home/job-table']" (click)="gotoTop()">לוח המשרות </a>
 
         </p>
         <p>
-          <a [routerLink]="['/smart-agent']">סוכן חכם</a>
+          <a [routerLink]="['/smart-agent']" (click)="gotoTop()">סוכן חכם</a>
 
         </p>
-        <p>
-          <a [routerLink]="['/recomend']">המלצות למשרה</a>
-
-        </p>
-<P>
-        <a  [routerLink]="['/rabanim']"> שאל את הרב</a>
-</P>
+        <P>
+          <a [routerLink]="['/forum']" (click)="gotoTop()"> שאל את הרב</a>
+        </P>
+        <P>
+          <a [routerLink]="['/connect']" (click)="gotoTop()">צור קשר</a>
+        </P>
       </div>
-      <!-- Grid column -->
       <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 font-weight-bold">פרסום משרה</h6>
+        <h6 class="text-uppercase mb-4 font-weight-bold"><span class="title">מפרסמת משרה ?</span></h6>
         <p>
-          <a [routerLink]="['/login/login-boss']">כניסת מפרסם</a>
+          <a [routerLink]="['/login/login-boss']" (click)="gotoTop()">כניסת מפרסם</a>
 
         </p>
         <p>
-          <a id="addJobLink" (click)="isBoss()">שיתוף משרה</a>
+          <a id="addJobLink" (click)="isBoss();gotoTop()">שיתוף משרה</a>
         </p>
         <p>
-          <a [routerLink]="['/add-company']">הוספת חברה </a>
+          <a [routerLink]="['/add-company']" (click)="gotoTop()">הוספת חברה </a>
 
         </p>
         <p>
@@ -72,7 +68,7 @@
 
       <!-- Grid column -->
       <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h6 class="text-uppercase mb-4 font-weight-bold">אידיאל</h6>
+        <h6 class="text-uppercase mb-4 font-weight-bold"><span class="title">עבודה שמורה</span></h6>
         <p> בארגוננו אלפי משרות המתאימות לאישה החרדית.
           אנו דוגלים על חזון השמה מהירה בצורה הדיסטרקטית והמהירה ביותר.
           טוב לנו שטוב לך. </p>
@@ -86,12 +82,12 @@
     <div class="row d-flex align-items-center">
 
       <!-- Grid column -->
-      <div class="col-md-7 col-lg-8">
+      <div class="col-md-12 col-lg-12">
 
         <!--Copyright-->
-        <p class="text-center text-md-left">© 2018 Copyright:
-          <a href="https://mdbootstrap.com/education/bootstrap/">
-            <strong> MDBootstrap.com</strong>
+        <p class="text-center text-md-center copyright">© 2020 Copyright:
+          <a href="mailto:kister1010@gmail.com">
+            <strong class="copyright">Double D</strong>
           </a>
         </p>
 
@@ -125,7 +121,7 @@
               </a>
             </li>
           </ul>
-        </div>
+        </div> 
 
       </div>
       <!-- Grid column -->

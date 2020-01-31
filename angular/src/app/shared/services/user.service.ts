@@ -17,13 +17,16 @@ export class UserService {
     httpClient: any;
     userObs: Subject<User> = new Subject();
     httpOptions;
-    constructor(private http: HttpClient) {
+    constructor(public http: HttpClient) {
         var id = localStorage.getItem("UserId");
         var password = localStorage.getItem("token");
         if (id != null) {
             if (!localStorage.getItem("isBoss"))
+
                 this.getByUserIdPassword(parseInt(id), password).subscribe(res => {
+                    debugger
                     this.setUser(res);
+
                     this.user = res;
                     this.boss = null;
 
@@ -35,6 +38,7 @@ export class UserService {
                     this.user = null;
 
                 })
+
             }
         }
         // this.getHttpOptions();
@@ -48,6 +52,11 @@ export class UserService {
         //   })
 
     }
+     getByBossIdPassword(id, password): Observable<Boss> {
+        if (!id || !password)
+            return null;
+        return this.http.get<Boss>(this.apiURL + `/GetBossDetails/` + id + '/' + password);
+    }
 
     // getCurrentUser() {
     //     this.getLoggedUser().subscribe((res: any) => {
@@ -56,12 +65,12 @@ export class UserService {
 
     // }
     getByUserIdPassword(id, password): Observable<User> {
+        if (!id || !password)
+        return null;
         return this.http.get<User>(this.apiURL + `/GetUserDetails/` + id + '/' + password);
-     
+
     }
-    getByBossIdPassword(id, password): Observable<Boss> {
-        return this.http.get<Boss>(this.apiURL + `/GetUserDetails/` + id + '/' + password);
-    }
+
     // getLoggedUser() {
     //     return this.http.get(this.apiURL + '/getLoggedUser', this.httpOptions)
     // }
@@ -113,8 +122,15 @@ export class UserService {
         return this.http.post<Boss>(`${this.apiURL}/loginBoss`, boss);
         this.isUser = true;
     }
+    loginAdmin() {
+       
+        return this.http.get(`${this.apiURL}/loginAdmin`);
+        debugger;
+      }
+    
+
     getById(id: number) {
-        return this.http.get(`${this.apiURL}/GetUser/` + id);
+        return this.http.get<User>(`${this.apiURL}/GetUser/` + id);
     }
     GetBossById(id: number) {
         this.user = null;
@@ -127,12 +143,16 @@ export class UserService {
         this.isUser = true;
     }
 
-    registerBoss(boss: Boss) {
+    registerBoss(boss: Boss, password) {
+        boss.BossPassword = password;
         return this.http.post<Boss>(`${this.apiURL}/registerBoss`, boss);
         this.isUser = true;
     }
     updateUser(user: User) {
         return this.http.post<User>(`${this.apiURL}/EditUser`, user);
+    }
+    updateBoss(user: Boss) {
+        return this.http.post<Boss>(`${this.apiURL}/EditUser`, user);
     }
     delete(id: number) {
         return this.http.delete(`/users/` + id);
@@ -157,6 +177,11 @@ export class UserService {
         return this.http.get<string>(`${this.apiURL}/getCv` + '/' + userId);
 
     }
+
+    countEnterUser(){
+        return this.http.get(`${this.apiURL}/countEnterUser`);
+      }
+
     //   downloadPDF(url): any {
     //     const options = { responseType: ResponseContentType.Blob  };
     //     return this.http.get(url, options).map(
@@ -164,6 +189,18 @@ export class UserService {
     //         return new Blob([res.blob()], { type: 'application/pdf' });
     //     });
     //   }
+
+
+    resetPassword(mail: string, password: string): Observable<User> 
+    {
+        return this.http.get<User>(`${this.apiURL}/changePassword` + '/' + mail + '/' + password);
+    }
+u:User=new User();
+    resetMail(mail:string)
+    {
+        this.u.UserMail=mail;
+        return this.http.post<Boolean>(`${this.apiURL}/resetMail` , this.u);
+    }
 }
 
 

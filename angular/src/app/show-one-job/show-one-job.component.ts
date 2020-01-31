@@ -17,8 +17,9 @@ export class ShowOneJobComponent implements OnInit {
   str: string;
   jobs: JobView[];
   durationInSeconds = 2;
-
-  constructor(private jobService: JobService, private _snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, public jobTable: JobTableComponent) {
+p
+  constructor(public jobService: JobService, public _snackBar: MatSnackBar,
+    public router: Router, public route: ActivatedRoute, public jobTable: JobTableComponent) {
     // route.params.subscribe(params=>{
     // this.listIdJob=JSON.parse(params['list']);
     debugger;
@@ -39,6 +40,7 @@ export class ShowOneJobComponent implements OnInit {
   ngOnInit() {
     this.jobService.getSomeJob(this.listIdJob).subscribe(res => {
       this.jobs = res;
+      this.jobTable.dataSource = JSON.parse(localStorage.getItem("myJobs"));
     })
   }
   signToSomeJob() {
@@ -48,25 +50,29 @@ export class ShowOneJobComponent implements OnInit {
     this.jobService.signToSomeJob(this.listIdJob).subscribe(res => {
       if (res) {
         debugger
-        this._snackBar.open('נרשמת בהצלחה','קבלתי',{duration: 3000});
-      
+        this._snackBar.open('נרשמת בהצלחה', 'קבלתי', { duration: 3000 });
         this.router.navigate(['/home/job-table']);
+        if (!localStorage.getItem("myJobs")) {// אם עדיין אין סל   
+          this.jobTable.dataSource = [];
+        }
+        else {
+          this.jobTable.dataSource = JSON.parse(localStorage.getItem("myJobs"));//שליפה של הסל  ' מהלוקל סטורג   
+        }
+        for (let index = 0; index < this.listIdJob.length; index++) {
+          this.jobTable.dataSource.push(this.listIdJob[index]);
+          // this.jobTable.allJobs.find(p => p.JobId == this.listIdJob[index]).JobSigned = true;
+        }
+        localStorage.setItem("myJobs", JSON.stringify(this.jobTable.dataSource));// שמירת הסל  בלוקל סטורג' של מחשב הקלינט   
+        this.jobTable.subjectBasket.next(this.jobTable.dataSource.length);// העברה של המידע שהיה שינוי בסל  
+
+
       }
-      else{
-        this._snackBar.open('ארע שגיאה. נסי בשנית','קבלתי');
+      else {
+        this._snackBar.open('ארע שגיאה. נסי בשנית', 'קבלתי');
 
       }
 
     })
   }
-  registerToJob(id: number) {
-    this.jobTable.registerToJob(id);
-  }
-
-  getRecommend(id: number) {
-    this.jobTable.getRecommend(id);
-  }
-
-  
 }
 

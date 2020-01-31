@@ -18,14 +18,17 @@ import { Recomend } from '../models/recomend';
   providedIn: 'root'
 })
 export class JobService {
+  userId:number;
+  jobId:number;
+bossId:number;  
 
- 
+
 
   apiURL: string = 'http://localhost:53790/Job/api/';
 
   str: string;
-
-  constructor(private httpClient: HttpClient) {
+  currentJobId: number = 0;
+  constructor(public httpClient: HttpClient) {
   }
 
   getJobParameters(): Observable<JobParameters> {
@@ -34,56 +37,61 @@ export class JobService {
   getSubJob(): Observable<SubjectJob[]> {
     return this.httpClient.get<SubjectJob[]>(this.apiURL + 'getSubjectJob');
   }
-  getAllJobs(city1,area1,part1,sub1):Observable<JobView[]>{
+  getAllJobs(city1, area1, part1, sub1): Observable<JobView[]> {
     // return this.httpClient.get<Job[]>(`${this.apiURL}/JobsByParameters`+city1+area1+part1+sub1);
-    return this.httpClient.get<JobView[]>(this.apiURL+'JobsByParameters/'+city1+'/'+area1+'/'+part1+'/'+ sub1);
+    return this.httpClient.get<JobView[]>(this.apiURL + 'JobsByParameters/' + city1 + '/' + area1 + '/' + part1 + '/' + sub1);
   }
 
-  getNewJobs():Observable<JobView[]> {
-    return this.httpClient.get<JobView[]>(this.apiURL+'NewJobs/');
+  getNewJobs(): Observable<JobView[]> {
+    return this.httpClient.get<JobView[]>(this.apiURL + 'NewJobs/');
+  }
+  getMyJobsBoss(idBoss:number): Observable<JobView[]> {
+    return this.httpClient.get<JobView[]>(this.apiURL + 'getJobsByBossId/'+idBoss);
+  }
+  
+  getMyJobsUser(iduser:number): Observable<JobView[]> {
+    return this.httpClient.get<JobView[]>(this.apiURL + 'getJobsUserSigned/'+iduser);
   }
   // }
   getCity(areaId: number): Observable<City[]> {
-    return this.httpClient.get<City[]>(this.apiURL +'getCity/'+ areaId);
+    return this.httpClient.get<City[]>(this.apiURL + 'getCity/' + areaId);
   }
-//--------------------------------------להוספת הצעת עבודה חדשה-------------------------------------------
-addJob(job:JobView)
-{
-  return this.httpClient.post(this.apiURL+'AddJob',job);
-}
+  //--------------------------------------להוספת הצעת עבודה חדשה-------------------------------------------
+  addJob(job: Job) {
+    return this.httpClient.post(this.apiURL + 'AddJob', job);
+  }
 
-//--------------------------------------------להוספת חברה חדשה----------------------------------------
-addCompany(company: Company)
-{
-  return this.httpClient.post<Company[]> (this.apiURL+'AddCompany',company);
-}
-getCompanies():Observable<Company[]> {
-  return this.httpClient.get<Company[]>(this.apiURL +'getCompany/');
-}
-sendSurvey(survey:Survey){
-  return this.httpClient.post(this.apiURL +'addSurvey',survey);
+  //--------------------------------------------להוספת חברה חדשה----------------------------------------
+  addCompany(company: Company) {
+    return this.httpClient.post<Company[]>(this.apiURL + 'AddCompany', company);
+  }
+  getCompanies(): Observable<Company[]> {
+    return this.httpClient.get<Company[]>(this.apiURL + 'getCompany/');
+  }
+  sendSurvey(survey: Survey) {
+    return this.httpClient.post(this.apiURL + 'addSurvey', survey);
 
-}
-//נרשם למשרה
-signJob(survey:Survey){
-  return this.httpClient.post(this.apiURL +'addSurvey',survey);
+  }
+  //נרשם למשרה
+  signJob(survey: Survey) {
+    return this.httpClient.post(this.apiURL + 'addSurvey', survey);
 
-}
-addRecomend(recomend:Recomend){
-  return this.httpClient.post(this.apiURL +'addNewRecomend',recomend);
-}
-getRecommendToJob(idJob: number):Observable<Recomend[]>
-{
-  return this.httpClient.get<Recomend[]> (this.apiURL +'getRecommendsToCurrentJob/'+idJob);
-}
-getSomeJob(data:number[]):Observable<JobView[]>
-{
-  return this.httpClient.post<JobView[]>(this.apiURL +'getSomeJob/',data);
+  }
+  addRecomend(recomend: Recomend) {
+    return this.httpClient.post(this.apiURL + 'addNewRecomend', recomend);
+  }
+  getRecommendToJob(idJob: number): Observable<Recomend[]> {
+    return this.httpClient.get<Recomend[]>(this.apiURL + 'getRecommendsToCurrentJob/' + idJob);
+  }
+  getSomeJob(data: number[]): Observable<JobView[]> {
+    return this.httpClient.post<JobView[]>(this.apiURL + 'getSomeJob/', data);
 
-}
-signToSomeJob(listIdJob: number[]) {
-  return this.httpClient.post(this.apiURL +'signToSomeJob/',listIdJob);
-}
+  }
+  signToSomeJob(listIdJob: number[]) {
+    return this.httpClient.post(this.apiURL + 'signToSomeJob/', listIdJob);
+  }
 
-
+  closeJob(jobId: number, isByUs: boolean) {
+    return this.httpClient.get<JobView[]>(this.apiURL + 'CloseJob/' + jobId+'/'+isByUs);
+  }
 }

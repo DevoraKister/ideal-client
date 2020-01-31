@@ -12,11 +12,11 @@ import { JobService } from 'src/app/shared/services/job.service';
 })
 export class WatchingCompaniesComponent implements OnInit {
 
-  constructor(private managerService: ManagerService,private jobService:JobService) { }
-  Companies:Company[];
+  constructor(public managerService: ManagerService,public jobService:JobService) { }
+  Companies:Company[]=new  Array();
   city:string;
-  private jobParameters: JobParameters=new JobParameters();
-  private subscriber;
+  public jobParameters: JobParameters=new JobParameters();
+  public subscriber;
 
   ngOnInit() {
     this.subscriber = this.jobService.getCompanies().subscribe(state => {

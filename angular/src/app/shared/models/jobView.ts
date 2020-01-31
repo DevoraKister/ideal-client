@@ -8,6 +8,8 @@ export class JobView{
     SubjectName:string;
     OutNetName:string;
     JobDateAdv:Date;
+    JobDateCaughtJob:Date;
+    JobDateShow:string;
     JobDescribe:string;
     JobStars:number;
     JobExperience:number;
@@ -15,4 +17,5 @@ export class JobView{
     JobRequire:string;
     CompanyId:number;
     BossId:number;
+    JobSigned:boolean=false;
 }

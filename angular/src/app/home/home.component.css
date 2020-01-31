@@ -10,19 +10,23 @@
 } */
 #background-image{
     width: 100vw;
-    height: 100vh;
+    height: 60vh;
   background-image: url("../../assets/2442414.jpg");
   background-attachment: fixed;
-  background-size: cover;
+  background-size:cover;
   background-position: center center;
   background-repeat: no-repeat;
   
-}
+}c
 #goToJobs{  
+  /* animation: reveal 7s infinite;
+  animation: slidein 7s infinite; */
       position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 1px solid #fff;
+    border-radius: 33px;
 }
 
 #container{
@@ -35,9 +39,11 @@
   }
   .center {
     position: relative;
-    top:50%;
+    top:29%;
     left:50%;
     transform: translate(-50%,-50%);
+    /* border: 1px solid #fff; */
+    border-radius: 33px;
   }
   
   .box {
@@ -50,8 +56,8 @@
   .button{
     padding:0;
     margin:0;
-    width:200px;
-    height:60px;
+    width:30vw;
+    height:15vh;
     float: left;
     background-color:#404040;
     overflow: hidden;
@@ -63,15 +69,15 @@
   
   .button:hover {
     -webkit-animation: ButtonScale 0.5s ease-out;
-    animation: ButtonScale 0.5s ease-out;
+    animation: ButtonScale 0.8s ease-out;
   }
   
   @-webkit-keyframes ButtonScale {
-    0% {height:60px;}
+    0% {height:15vh;}
     75% {height:70px;}
-    85% {height:60px;}
+    85% {height:15vh;}
     92% {height:66px;}  
-    100% {height:60px;}
+    100% {height:15vh;}
   }
   
   .drop {
@@ -107,4 +113,48 @@
   }
 #goToJobs{
     color: white;
+}
+#getStart{
+  direction: rtl;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  margin-top: 4vh;
+  margin-right: 4vh;
+  margin-left: 1.1em;
+}
+
+
+
+.cd-modal-action {
+  position: relative;
+}
+.cd-modal-action .btn {
+  width: 12.5em;
+  height: 4em;
+  background-color: #123758;
+  border-radius: 5em;
+  transition: color 0.2s 0.3s, width 0.3s 0s;
+}
+.cd-modal-action .btn.to-circle {
+  width: 4em;
+  color: transparent;
+  transition: color 0.2s 0s, width 0.3s 0.2s;
+}
+.cd-modal-action .cd-modal-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-2em);
+  width: 4em;
+  height: 4em;
+  background-color: #123758;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0s 0.5s;
+}
+.cd-modal-action .cd-modal-bg.is-visible {
+  opacity: 1;
+  visibility: visible;
 }

@@ -1,93 +1,112 @@
 <!-- דינה -->
+
 <body class="align">
-  <h4>הכנסת פרטי משתמש:</h4>
+  <h4>הכנסת פרטים אישיים:</h4>
   <div class="grid">
     <!-- <form action="https://httpbin.org/post" method="POST" class="form login"> -->
 
-    <form class="form login">
+    <form #userRegisterForm="ngForm" class="form login">
 
       <div class="form__field" id="login-show">
         <label for="login__username"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
           </svg><span class="hidden">שם</span></label>
-        <input id="login__username" type="text" name="username" class="form__input" placeholder="שם" [(ngModel)]="currentUser.UserName"
-          required>
+        <input id="login__username" type="text" name="username" class="form__input" placeholder="שם"
+          [(ngModel)]="currentUser.UserName" #name required >
       </div>
 
       <div class="form__field">
         <label for="login__password"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
           </svg><span class="hidden">סיסמא</span></label>
-        <input id="login__password" type="password" name="password" class="form__input" placeholder="סיסמא" [(ngModel)]="currentUser.password"
-          required>
+        <input id="login__password" type="password" name="password" class="form__input" placeholder="סיסמא"
+          [(ngModel)]="currentUser.password" required minlength="6" >
       </div>
+       <mat-error *ngIf="currentUser.password!=''&&currentUser.password.length<6">אורך הסיסמא חייב להיות מינימום 6 תוים</mat-error>
       <div class="form__field">
         <label for="login__phone"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#phone"></use>
           </svg><span class="hidden">סיסמא</span></label>
-        <input id="login__phone" type="text" name="phone" class="form__input" placeholder="טלפון" [(ngModel)]="currentUser.UserTel"
-          minlength="4" required>
+        <input id="login__phone" type="text" name="phone" class="form__input" placeholder="טלפון"
+          [(ngModel)]="currentUser.UserTel" minlength="6" required pattern="^\d+$">
       </div>
 
-      <div class="form__field">
+      <!-- <div class="form__field">
         <label for="login__mail"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
           </svg><span class="hidden">סיסמא</span></label>
-        <input id="login__mail" type="text" name="mail" class="form__input" placeholder="כתובת מייל" [(ngModel)]="currentUser.UserMail"
+        <input id="login__mail" [formControl]="emailControl" type="text" name="mail" class="form__input" placeholder="כתובת מייל"
           required>
-      </div>
+      </div> 
+      <mat-error *ngIf="emailControl.invalid">{{getErrorMessageEmail()}}</mat-error> -->
 
+            <div class="form__field">
+        <label for="login__mail"><svg class="icon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+          </svg><span class="hidden">סיסמא</span></label>
+        <input id="login__mail"  type="text" name="mail" class="form__input" placeholder="כתובת מייל"
+          required [(ngModel)]="currentUser.UserMail">
+      </div> 
+  <h5>המשרה שאני מחפשת:</h5>
+
+      <!-- <mat-error *ngIf="emailControl.invalid">{{getErrorMessageEmail()}}</mat-error> -->
+      <form [formGroup]="subForm">
+        <mat-form-field class="col-12" style="text-align: right">
+          <input type="text" [appAutocomleteValidate]="getSubNames()" matInput placeholder=" תחום משרה"
+            formControlName="subsGroup" required [matAutocomplete]="autoGroup3" #txt>
+          <mat-autocomplete #autoGroup3="matAutocomplete" #sub>
+            <mat-option *ngFor="let sub of subOptions | async" [value]="sub.SubName" style="text-align: right">
+
+              {{sub.SubName}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+
+      <!-- (blur)="areaName(area.options.first.value)"   -->
+      <form [formGroup]="partsForm">
+        <mat-form-field class="col-12" style="text-align: right">
+          <input type="text" [appAutocomleteValidate]="getPartNames()" matInput placeholder=" חלקי משרה"
+            formControlName="partsGroup" required [matAutocomplete]="autoGroup4">
+          <!-- (mousemove)="partName(part.options.first.value)" -->
+          <mat-autocomplete #autoGroup4="matAutocomplete" #part>
+            <mat-option *ngFor="let part of partOptions | async" [value]="part.PartName" style="text-align: right">
+              {{part.PartName}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
 
       <form [formGroup]="areasForm">
-        <mat-form-field>
-          <input type="text" name="area" [appAutocomleteValidate]="getAreaNames()" matInput placeholder="בחר אזור" formControlName="areasGroup" required [matAutocomplete]="autoGroup2" #area (change)="areaName(area.value)">
-          <mat-autocomplete #autoGroup2="matAutocomplete"  >
-              <!-- (focusout)="areaName(area1) -->
-            <mat-option *ngFor="let area of areaOptions | async" [value]="area.AreaName"     >
+        <mat-form-field class="col-12" style="text-align: right">
+          <input type="text" name="area" [appAutocomleteValidate]="getAreaNames()" matInput placeholder=" אזור"
+            formControlName="areasGroup" required [matAutocomplete]="autoGroup2" #area (change)="areaName(area.value)"
+    (mouseout)="areaName(area.value)" (mousemove)="areaName(area.value)" required>
+          <mat-autocomplete #autoGroup2="matAutocomplete">
+            <!-- (focusout)="areaName(area1) -->
+            <mat-option *ngFor="let area of areaOptions | async" [value]="area.AreaName" style="text-align: right">
               {{area.AreaName}}
-            </mat-option> 
+            </mat-option>
           </mat-autocomplete>
         </mat-form-field>
       </form>
       <!-- |cityPipe:areasGroup.value  -->
-    <form  [formGroup]="citiesForm">
-      <mat-form-field>
-        <input type="text" name="city" [appAutocomleteValidate]="getCityNames()" matInput placeholder="בחר עיר"  formControlName="citiesGroup"  [matAutocomplete]="autoGroup1" (focus)="areaName(area.value)"#city>
-          <mat-autocomplete #autoGroup1="matAutocomplete"   #city>
-            <mat-option *ngFor="let city of cityOptions | async" [value]="city.CityName">
+      <form [formGroup]="citiesForm">
+        <mat-form-field class="col-12" style="text-align: right">
+          <input type="text" name="city" [appAutocomleteValidate]="getCityNames()" matInput placeholder=" עיר"
+            formControlName="citiesGroup" [matAutocomplete]="autoGroup1" (focus)="areaName(area.value)" #city required>
+          <mat-autocomplete #autoGroup1="matAutocomplete" #city>
+            <mat-option *ngFor="let city of cityOptions | async" [value]="city.CityName" style="text-align: right">
 
               {{city.CityName}}
-            </mat-option> 
-          </mat-autocomplete>
-        </mat-form-field>
-    </form>
-
-    <form [formGroup]="subForm">
-      <mat-form-field>
-        <input type="text" [appAutocomleteValidate]="getSubNames()" matInput placeholder="בחר סוג משרה" formControlName="subsGroup" required [matAutocomplete]="autoGroup3" #txt  >
-        <mat-autocomplete #autoGroup3="matAutocomplete" #sub>
-          <mat-option *ngFor="let sub of subOptions | async" [value]="sub.SubName">
-            
-            {{sub.SubName}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>
-
-    <!-- (blur)="areaName(area.options.first.value)"   -->
-    <form [formGroup]="partsForm">
-        <mat-form-field>
-          <input type="text" [appAutocomleteValidate]="getPartNames()" matInput placeholder="בחר חלקי משרה" formControlName="partsGroup" required [matAutocomplete]="autoGroup4">
-          <!-- (mousemove)="partName(part.options.first.value)" -->
-            <mat-autocomplete #autoGroup4="matAutocomplete" #part>
-              <mat-option *ngFor="let part of partOptions | async" [value]="part.PartName">
-                {{part.PartName}}
-              </mat-option>
+            </mat-option>
           </mat-autocomplete>
         </mat-form-field>
       </form>
-      
-        
+
+
+
+
       <!-- <div class="form__field">
         <label for="login__password"><svg class="icon">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use>
@@ -138,48 +157,56 @@
 
 
       <!-- <mat-checkbox>Check me!</mat-checkbox> -->
-      <p> האם אתה מעונין להתחזק ע"י אישה מקרית ספר</p>
-      <input type="checkbox" name="yy" #chizuk [(ngModel)]="currentUser.UserIsChizuk" value="" />
-      <p> האם אתה מעונין בעדכונים</p>
-      <input type="checkbox" #update name="UserIsUpdate" [(ngModel)]="currentUser.UserIsUpdate" value="true" />
+      <!-- <p> מעוניינת לקבל חיזוק יומי במייל</p>
+      <input type="checkbox" name="yy" #chizuk [(ngModel)]="currentUser.UserIsChizuk" value="" /> -->
+      <!-- <p>מאשרת קבלת עדכונים במייל</p> -->
+      <!-- <input type="checkbox" #update name="UserIsUpdate" [(ngModel)]="currentUser.UserIsUpdate" value="true" /> -->
+
+
       <div class="form__field">
-      </div>
-      <p>הוסף קו"ח</p>
-      <div class="form-group">
 
-        <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+        <h3>הוספת קו"ח</h3>
+        <div class="form-group">
+          <!-- <div class="fileContainer"> -->
+          <input type="file" id="file" (change)="handleFileInput($event.target.files)" required>
+          <!-- </div> -->
+        </div>
       </div>
+  
+    <mat-checkbox [(ngModel)]="currentUser.UserIsUpdate" [checked]="true" style="text-align: right">מאשרת תקנון אתר
+      וקבלת עדכונים </mat-checkbox><br><br>
+    <button mat-raised-button matTooltip="הרשמי " class="col-12" style="background-color:tomato"
+      (click)="register(city,area,part,sub)" matTooltipPosition="above" [disabled]="!userRegisterForm.form.valid">הרשמי עכשיו</button>
     </form>
-
-    <p>
-      <label>
-        <input type="checkbox" />
-        <span>Red</span>
-      </label>
-    </p>
-    <input (click)="register(city,area,part,sub)" type="submit" value="הרשם">
+    <br>
+    <br>
+    <br>
+    <!-- <input (click)="register(city,area,part,sub)" type="submit" value="הרשם"> -->
     <!-- <svg class="icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use></svg> -->
   </div>
 
-  <svg xmlns="http://www.w3.org/2000/svg" class="icons">
+  <!-- <svg xmlns="http://www.w3.org/2000/svg" class="icons">
     <symbol id="arrow-right" viewBox="0 0 1792 1792">
-      <path d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293H245q-52 0-84.5-37.5T128 1024V896q0-53 32.5-90.5T245 768h704L656 474q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z" />
+      <path
+        d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293H245q-52 0-84.5-37.5T128 1024V896q0-53 32.5-90.5T245 768h704L656 474q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z" />
     </symbol>
     <symbol id="lock" viewBox="0 0 1792 1792">
-      <path d="M640 768h512V576q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28H416q-40 0-68-28t-28-68V864q0-40 28-68t68-28h32V576q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z" />
+      <path
+        d="M640 768h512V576q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28H416q-40 0-68-28t-28-68V864q0-40 28-68t68-28h32V576q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z" />
     </symbol>
     <symbol id="user" viewBox="0 0 1792 1792">
-      <path d="M1600 1405q0 120-73 189.5t-194 69.5H459q-121 0-194-69.5T192 1405q0-53 3.5-103.5t14-109T236 1084t43-97.5 62-81 85.5-53.5T538 832q9 0 42 21.5t74.5 48 108 48T896 971t133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5T896 896 624.5 783.5 512 512t112.5-271.5T896 128t271.5 112.5T1280 512z" />
+      <path
+        d="M1600 1405q0 120-73 189.5t-194 69.5H459q-121 0-194-69.5T192 1405q0-53 3.5-103.5t14-109T236 1084t43-97.5 62-81 85.5-53.5T538 832q9 0 42 21.5t74.5 48 108 48T896 971t133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5T896 896 624.5 783.5 512 512t112.5-271.5T896 128t271.5 112.5T1280 512z" />
     </symbol>
-  </svg>
+  </svg> -->
 
-  
+
 </body>
 
 
 <!-- דבורה -->
-      <!-- <mat-error *ngIf="partsGroup.invalid">יש להקיש שם חוקי לכתובת</mat-error>   -->
+<!-- <mat-error *ngIf="partsGroup.invalid">יש להקיש שם חוקי לכתובת</mat-error>   -->
 <!-- <form [formGroup]="citiesForm">
   <mat-form-field>
     <input type="text" matInput placeholder="Choose City" formControlName="citiesGroup" required [matAutocomplete]="autoGroup">
@@ -326,7 +353,7 @@
 
   
 </body> -->
-      <!-- <mat-error *ngIf="partsGroup.invalid">יש להקיש שם חוקי לכתובת</mat-error>   -->
+<!-- <mat-error *ngIf="partsGroup.invalid">יש להקיש שם חוקי לכתובת</mat-error>   -->
 <!-- <form [formGroup]="citiesForm">
   <mat-form-field>
     <input type="text" matInput placeholder="Choose City" formControlName="citiesGroup" required [matAutocomplete]="autoGroup">
